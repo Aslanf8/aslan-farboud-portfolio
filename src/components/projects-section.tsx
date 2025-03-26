@@ -33,6 +33,29 @@ const projects = [
     github: "",
   },
   {
+    id: "daily-vocab",
+    title: "DailyVocab",
+    description:
+      "A comprehensive mobile vocabulary app that delivers a new word daily, featuring pronunciation, definitions, etymology, and personalized tracking to enhance language learning.",
+    image: "/daily-word-logo.png",
+    tags: ["React Native", "Expo", "Supabase", "Mobile", "API Integration"],
+    link: "/projects/daily-vocab",
+    live: "https://apps.apple.com/ca/app/dailyword/id6627334788",
+    github: "",
+  },
+  {
+    id: "storytime",
+    title: "StoryTime",
+    description:
+      "A social platform for sharing and listening to stories with features for story creation, friend connections, and personalized feeds. Coming soon - pending Grok 3 API release.",
+    image: "/storytime-logo.png",
+    tags: ["React Native", "TypeScript", "Expo", "Supabase", "Audio"],
+    link: "/projects/storytime",
+    live: "",
+    github: "",
+    comingSoon: true,
+  },
+  {
     id: "briefbuddy",
     title: "BriefBuddy",
     description:
@@ -70,82 +93,180 @@ export function ProjectsSection() {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-6 mt-12 md:grid-cols-2 lg:grid-cols-3 mx-auto max-w-[1200px]">
-          {projects.map((project) => (
-            <Card
-              key={project.id}
-              className="h-full flex flex-col overflow-hidden border-2 transition-colors hover:border-primary"
-            >
-              <div className="relative h-[200px] overflow-hidden">
-                {project.image ? (
-                  <div className="relative h-full w-full">
-                    {/* Replace with actual image when available */}
-                    {/* <div className="absolute inset-0 flex items-center justify-center bg-slate-200 dark:bg-slate-800">
-                      <span className="text-lg font-medium">
-                        {project.title} Image
-                      </span>
-                    </div> */}
-                    {/* Uncomment when you have actual images */}
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-300 hover:scale-105"
-                    />
+
+        <div className="w-full max-w-[1200px] mt-12">
+          <h3 className="text-xl font-semibold mb-6">Client Projects</h3>
+          <p className="text-gray-500 mb-6">
+            Businesses that contracted me to develop custom software solutions.
+          </p>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mb-12">
+            {projects
+              .filter(
+                (project) =>
+                  project.id === "tfi-group" || project.id === "traceit"
+              )
+              .map((project) => (
+                <Card
+                  key={project.id}
+                  className="h-full flex flex-col overflow-hidden border-2 transition-colors hover:border-primary"
+                >
+                  <div className="relative h-[200px] overflow-hidden">
+                    {project.image ? (
+                      <div className="relative h-full w-full flex items-center justify-center p-4">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          width={250}
+                          height={350}
+                          className="object-contain transition-transform duration-300 hover:scale-105"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-slate-200 dark:bg-slate-800">
+                        <span className="text-lg font-medium">
+                          {project.title}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-slate-200 dark:bg-slate-800">
-                    <span className="text-lg font-medium">{project.title}</span>
+                  <CardHeader>
+                    <CardTitle>{project.title}</CardTitle>
+                    <CardDescription>{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {project.tags.map((tag) => (
+                        <Badge key={tag} variant="secondary">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex justify-between">
+                    <Button asChild variant="outline" size="sm">
+                      <Link href={project.link}>View Details</Link>
+                    </Button>
+                    <div className="flex gap-2">
+                      {project.github && (
+                        <Button size="icon" variant="ghost" asChild>
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Github className="h-4 w-4" />
+                            <span className="sr-only">GitHub</span>
+                          </a>
+                        </Button>
+                      )}
+                      {project.live ? (
+                        <Button size="icon" variant="ghost" asChild>
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            <span className="sr-only">Live Demo</span>
+                          </a>
+                        </Button>
+                      ) : project.comingSoon ? (
+                        <Badge variant="outline" className="ml-2">
+                          Coming Soon
+                        </Badge>
+                      ) : null}
+                    </div>
+                  </CardFooter>
+                </Card>
+              ))}
+          </div>
+
+          <h3 className="text-xl font-semibold mb-6">Personal Projects</h3>
+          <p className="text-gray-500 mb-6">
+            Projects built out of curiosity and personal interest.
+          </p>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {projects
+              .filter(
+                (project) =>
+                  project.id !== "tfi-group" && project.id !== "traceit"
+              )
+              .map((project) => (
+                <Card
+                  key={project.id}
+                  className="h-full flex flex-col overflow-hidden border-2 transition-colors hover:border-primary"
+                >
+                  <div className="relative h-[200px] overflow-hidden">
+                    {project.image ? (
+                      <div className="relative h-full w-full flex items-center justify-center p-4">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-contain transition-transform duration-300 hover:scale-105"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-slate-200 dark:bg-slate-800">
+                        <span className="text-lg font-medium">
+                          {project.title}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <Button asChild variant="outline" size="sm">
-                  <Link href={project.link}>View Details</Link>
-                </Button>
-                <div className="flex gap-2">
-                  {project.github && (
-                    <Button size="icon" variant="ghost" asChild>
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4" />
-                        <span className="sr-only">GitHub</span>
-                      </a>
+                  <CardHeader>
+                    <CardTitle>{project.title}</CardTitle>
+                    <CardDescription>{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {project.tags.map((tag) => (
+                        <Badge key={tag} variant="secondary">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex justify-between">
+                    <Button asChild variant="outline" size="sm">
+                      <Link href={project.link}>View Details</Link>
                     </Button>
-                  )}
-                  {project.live && (
-                    <Button size="icon" variant="ghost" asChild>
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                        <span className="sr-only">Live Demo</span>
-                      </a>
-                    </Button>
-                  )}
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
+                    <div className="flex gap-2">
+                      {project.github && (
+                        <Button size="icon" variant="ghost" asChild>
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Github className="h-4 w-4" />
+                            <span className="sr-only">GitHub</span>
+                          </a>
+                        </Button>
+                      )}
+                      {project.live ? (
+                        <Button size="icon" variant="ghost" asChild>
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            <span className="sr-only">Live Demo</span>
+                          </a>
+                        </Button>
+                      ) : project.comingSoon ? (
+                        <Badge variant="outline" className="ml-2">
+                          Coming Soon
+                        </Badge>
+                      ) : null}
+                    </div>
+                  </CardFooter>
+                </Card>
+              ))}
+          </div>
         </div>
+
         <div className="flex justify-center mt-12">
           <Button asChild>
             <Link href="/projects">View All Projects</Link>

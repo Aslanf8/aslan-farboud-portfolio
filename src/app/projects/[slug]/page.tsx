@@ -59,6 +59,47 @@ export const projects = [
     github: "",
   },
   {
+    id: "daily-vocab",
+    title: "DailyVocab",
+    description:
+      "A comprehensive mobile vocabulary app that delivers a new word daily, featuring pronunciation, definitions, etymology, and personalized tracking to enhance language learning.",
+    longDescription: `
+      Developed DailyVocab, a feature-rich mobile application built with React Native (Expo) that helps users expand 
+      their vocabulary by learning a new word each day. Implemented comprehensive word details including pronunciation 
+      (audio + IPA), definitions, usage examples, etymology, and synonyms & antonyms.
+      
+      Created an engaging user experience with smooth animations, gradient backgrounds, and responsive design for all 
+      screen sizes. Integrated Supabase for backend services, Expo Notifications for daily reminders, and AsyncStorage 
+      for local data persistence. Designed a user-friendly interface with word history tracking, profile statistics, 
+      and infinite scrolling for seamless content browsing.
+    `,
+    image: "/daily-word-logo.png",
+    tags: ["React Native", "Expo", "Supabase", "Mobile", "API Integration"],
+    features: [
+      "Daily word with complete details",
+      "Word history with expandable cards",
+      "Profile with streak tracking",
+      "Push notifications reminders",
+      "Animated transitions and UI elements",
+      "Audio pronunciation playback",
+      "Infinite scrolling word history",
+    ],
+    tech: [
+      "React Native (Expo)",
+      "React Context API",
+      "React Navigation",
+      "Expo AV",
+      "Expo Notifications",
+      "Supabase",
+      "React Native Animated API",
+      "AsyncStorage",
+      "Dictionary API Integration",
+    ],
+    live: "https://apps.apple.com/ca/app/dailyword/id6627334788",
+    github: "",
+    appStore: "https://apps.apple.com/ca/app/dailyword/id6627334788",
+  },
+  {
     id: "brief-buddy",
     title: "BriefBuddy",
     description:
@@ -95,7 +136,7 @@ export const projects = [
     appStore: "https://apple.co/49xQYCf",
   },
   {
-    id: "trace-it",
+    id: "traceit",
     title: "TraceIt",
     description:
       "Comprehensive food traceability system ensuring CFIA compliance by tracking ingredients, production, and sales across the food lifecycle.",
@@ -131,6 +172,47 @@ export const projects = [
     ],
     live: "https://traceit.ca",
     github: "",
+  },
+  {
+    id: "storytime",
+    title: "StoryTime",
+    description:
+      "A social platform for sharing and listening to stories with features for story creation, friend connections, and personalized feeds.",
+    longDescription: `
+      Developed StoryTime, a comprehensive mobile story-sharing application built with React Native (Expo) and TypeScript. 
+      Created a robust social platform featuring AI-assisted story generation, audio narration, and personalized content discovery.
+      
+      Implemented a sophisticated audio system with chapter-based playback, background audio support, and progress tracking. 
+      Integrated a friend system with request management and notifications. Built a custom theme system with dark/light modes 
+      and designed a library of reusable UI components. Used Supabase for authentication, database, and real-time features.
+      
+      Note: StoryTime is currently in development, with release pending the availability of the Grok 3 API, which testing has shown 
+      to be superior for AI story generation capabilities.
+    `,
+    image: "/storytime-logo.png",
+    tags: ["React Native", "TypeScript", "Expo", "Supabase", "Audio"],
+    features: [
+      "AI-assisted story generation",
+      "Chapter-based audio playback",
+      "Friend system with notifications",
+      "Personalized content feed",
+      "Custom theme system with dark mode",
+      "Real-time updates and interactions",
+    ],
+    tech: [
+      "React Native (Expo)",
+      "TypeScript",
+      "Supabase PostgreSQL",
+      "Supabase Storage",
+      "Expo AV",
+      "Expo Router",
+      "Context API",
+      "React Native Reanimated",
+      "React Native Gesture Handler",
+    ],
+    live: "",
+    github: "",
+    comingSoon: "Releasing after Grok 3 API availability",
   },
 ];
 
@@ -205,6 +287,13 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                       Visit Live Site
                     </a>
                   </Button>
+                )}
+                {project.comingSoon && (
+                  <div className="flex items-center">
+                    <Badge variant="outline" className="text-md px-3 py-1">
+                      Coming Soon: {project.comingSoon}
+                    </Badge>
+                  </div>
                 )}
                 {project.github && (
                   <Button variant="outline" asChild>
