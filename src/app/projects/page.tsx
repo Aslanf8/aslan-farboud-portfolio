@@ -65,7 +65,7 @@ export default function ProjectsPage() {
                       ) : (
                         <div className="flex h-full w-full items-center justify-center bg-slate-200 dark:bg-slate-800">
                           <span className="text-lg font-medium">
-                            {project.title} Image
+                            {project.title}
                           </span>
                         </div>
                       )}
@@ -102,7 +102,7 @@ export default function ProjectsPage() {
                             </a>
                           </Button>
                         )}
-                        {project.live && (
+                        {project.live ? (
                           <Button size="icon" variant="ghost" asChild>
                             <a
                               href={project.live}
@@ -113,7 +113,11 @@ export default function ProjectsPage() {
                               <span className="sr-only">Live Demo</span>
                             </a>
                           </Button>
-                        )}
+                        ) : project.comingSoon ? (
+                          <Badge variant="outline" className="ml-2">
+                            Coming Soon
+                          </Badge>
+                        ) : null}
                       </div>
                     </CardFooter>
                   </Card>
@@ -147,7 +151,7 @@ export default function ProjectsPage() {
                       ) : (
                         <div className="flex h-full w-full items-center justify-center bg-slate-200 dark:bg-slate-800">
                           <span className="text-lg font-medium">
-                            {project.title} Image
+                            {project.title}
                           </span>
                         </div>
                       )}
@@ -184,7 +188,7 @@ export default function ProjectsPage() {
                             </a>
                           </Button>
                         )}
-                        {project.live && (
+                        {project.live ? (
                           <Button size="icon" variant="ghost" asChild>
                             <a
                               href={project.live}
@@ -195,7 +199,11 @@ export default function ProjectsPage() {
                               <span className="sr-only">Live Demo</span>
                             </a>
                           </Button>
-                        )}
+                        ) : project.comingSoon ? (
+                          <Badge variant="outline" className="ml-2">
+                            Coming Soon
+                          </Badge>
+                        ) : null}
                       </div>
                     </CardFooter>
                   </Card>
