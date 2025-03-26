@@ -104,3 +104,6 @@
 - Improved TypeScript types by replacing 'any' with specific interfaces
 - Enhanced error handling with custom error types
 - Fixed type definitions in SWR provider cache implementation
+- Fixed Next.js API route parameter types to match App Router requirements
+- Corrected dynamic route handler context parameter structure
+- Fixed type errors in SWR error handling

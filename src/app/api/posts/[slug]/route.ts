@@ -6,10 +6,10 @@ export const runtime = 'edge'; // Use edge runtime for better performance
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  context: { params: { slug: string } }
 ) {
   try {
-    const slug = params.slug;
+    const slug = context.params.slug;
     
     console.log(`API /posts/[slug] - Fetching post with slug: ${slug}`);
     
@@ -40,7 +40,7 @@ export async function GET(
       },
     });
   } catch (error) {
-    console.error(`Error fetching post with slug ${params.slug}:`, error);
+    console.error(`Error fetching post with slug ${context.params.slug}:`, error);
     return NextResponse.json(
       { message: 'Error fetching post', error: (error as Error).message },
       { status: 500 }
