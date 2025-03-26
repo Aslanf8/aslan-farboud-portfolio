@@ -107,3 +107,4 @@
 - Fixed Next.js API route parameter types to match App Router requirements
 - Corrected dynamic route handler context parameter structure
 - Fixed type errors in SWR error handling
+- Used correct route handler parameter destructuring format for Next.js App Router
