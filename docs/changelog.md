@@ -123,3 +123,11 @@
 - Fixed params type compatibility issues in dynamic route page components
 - Simplified component parameter handling for improved build compatibility
 - Ensured consistent approach to handling route parameters across the application
+
+## 2023-11-26
+
+- Removed custom PageProps type definition to use Next.js native typing
+- Simplified page component parameter handling for better build compatibility
+- Fixed TypeScript errors during deployment by using inline type annotations
+- Maintained functionality while reducing type complexity
+- Ensured compatibility with Next.js 15 build system
