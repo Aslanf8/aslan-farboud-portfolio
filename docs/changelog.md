@@ -108,3 +108,11 @@
 - Corrected dynamic route handler context parameter structure
 - Fixed type errors in SWR error handling
 - Used correct route handler parameter destructuring format for Next.js App Router
+
+## 2023-11-25
+
+- Simplified API routes to use Web standard Request/Response objects
+- Removed NextRequest/NextResponse dependencies for better stability
+- Reduced complexity in route handlers for improved maintainability
+- Fixed deployment issues with simplified type signatures
+- Removed unnecessary logging and caching headers for cleaner implementation
