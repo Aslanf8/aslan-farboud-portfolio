@@ -93,3 +93,14 @@
 - Created first blog post introducing the site and author
 - Ensured proper image optimization through Next.js Image component
 - Added Supabase storage domain to approved image sources for blog images
+
+## 2023-11-24
+
+- Fixed ESLint errors for successful Vercel deployment
+- Replaced <img> tags with Next.js Image components for better performance
+- Added proper image loading attributes with fill and sizes properties
+- Fixed unescaped entities in JSX content
+- Removed unused imports and variables throughout the codebase
+- Improved TypeScript types by replacing 'any' with specific interfaces
+- Enhanced error handling with custom error types
+- Fixed type definitions in SWR provider cache implementation

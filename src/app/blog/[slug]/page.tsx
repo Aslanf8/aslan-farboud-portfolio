@@ -5,12 +5,12 @@ import { getAllSlugs, getPostBySlug, getAllPosts } from "@/lib/blog";
 import { createBlogMetadata } from "@/lib/metadata";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
 import { Clock, CalendarDays, User, ArrowLeft, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { BackToTopButton } from "@/components/back-to-top-button";
 import Script from "next/script";
 import { unstable_cache } from "next/cache";
+import Image from "next/image";
 
 // Generate metadata dynamically
 export async function generateMetadata({
@@ -242,12 +242,14 @@ export default async function BlogPost({
           {post.featured_image && (
             <div className="not-prose mb-10 rounded-xl overflow-hidden shadow-lg">
               <AspectRatio ratio={21 / 9}>
-                <img
+                <Image
                   src={post.featured_image}
                   alt={post.title}
                   className="w-full h-full object-cover"
                   loading="eager"
-                  fetchPriority="high"
+                  priority
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1200px"
                   itemProp="image"
                 />
               </AspectRatio>
@@ -342,11 +344,13 @@ export default async function BlogPost({
                   <Card className="h-full overflow-hidden border bg-card hover:bg-accent/30 transition-colors duration-300 hover:border-accent">
                     <AspectRatio ratio={16 / 9}>
                       {relatedPost.featured_image ? (
-                        <img
+                        <Image
                           src={relatedPost.featured_image}
                           alt={relatedPost.title}
                           className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 400px"
                         />
                       ) : (
                         <div className="bg-gradient-to-br from-gray-700 to-gray-900 w-full h-full flex items-center justify-center text-white">

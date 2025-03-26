@@ -3,6 +3,12 @@
 import { SWRConfig } from "swr";
 import { ReactNode, useEffect, useState } from "react";
 
+// Define custom error type
+interface FetchError extends Error {
+  info?: unknown;
+  status?: number;
+}
+
 // Global fetcher function for SWR
 const fetcher = async (url: string) => {
   const res = await fetch(url);
@@ -10,10 +16,10 @@ const fetcher = async (url: string) => {
   // If the status code is not in the range 200-299,
   // we still try to parse and throw it.
   if (!res.ok) {
-    const error = new Error("An error occurred while fetching the data.");
+    const error = new FetchError("An error occurred while fetching the data.");
     // Attach extra info to the error object.
-    (error as any).info = await res.json();
-    (error as any).status = res.status;
+    error.info = await res.json();
+    error.status = res.status;
     throw error;
   }
 
@@ -24,14 +30,14 @@ const fetcher = async (url: string) => {
 export function Providers({ children }: { children: ReactNode }) {
   // Store the provider in state to avoid SSR issues
   const [provider, setProvider] =
-    useState<() => Map<any, any> | undefined>(undefined);
+    useState<() => Map<string, unknown> | undefined>(undefined);
 
   // Set up provider on client-side only
   useEffect(() => {
     // Create a safe provider function that works in browser
     const clientProvider = () => {
       // Create a new Map for cache storage
-      const map = new Map();
+      const map = new Map<string, unknown>();
 
       try {
         // Try to load from sessionStorage (browser-only)
@@ -40,7 +46,7 @@ export function Providers({ children }: { children: ReactNode }) {
           const parsed = JSON.parse(cached);
           // Populate map with cached data if valid
           if (Array.isArray(parsed)) {
-            parsed.forEach(([key, value]) => {
+            parsed.forEach(([key, value]: [string, unknown]) => {
               map.set(key, value);
             });
           }

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPostBySlug } from '@/lib/blog';
-import { headers } from 'next/headers';
 
 // Set appropriate caching headers
 export const runtime = 'edge'; // Use edge runtime for better performance

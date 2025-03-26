@@ -1,5 +1,4 @@
 import useSWR from 'swr';
-import { getAllPosts, getPostBySlug } from '@/lib/blog';
 import { BlogPost } from '@/lib/blog';
 
 // Basic fetcher function for JSON data

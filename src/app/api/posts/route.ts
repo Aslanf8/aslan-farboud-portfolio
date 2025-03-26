@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllPosts } from '@/lib/blog';
-import { headers } from 'next/headers';
 
 // Set appropriate caching headers
 export const runtime = 'edge'; // Use edge runtime for better performance
@@ -19,10 +18,6 @@ export async function GET(request: NextRequest) {
     
     // Apply limit if specified
     const limitedPosts = limit ? posts.slice(0, limit) : posts;
-    
-    // Set headers for client-side caching
-    const headersList = headers();
-    const cacheControl = headersList.get('cache-control') || '';
     
     return NextResponse.json(limitedPosts, {
       headers: {

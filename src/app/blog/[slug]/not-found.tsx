@@ -12,7 +12,8 @@ export default function BlogNotFound() {
       <h1 className="text-4xl font-bold mb-4">Blog Post Not Found</h1>
 
       <p className="text-xl text-muted-foreground max-w-[500px] mb-8">
-        The blog post you're looking for doesn't exist or has been removed.
+        The blog post you&apos;re looking for doesn&apos;t exist or has been
+        removed.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4">
