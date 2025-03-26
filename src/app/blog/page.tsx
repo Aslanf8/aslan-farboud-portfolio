@@ -43,11 +43,9 @@ export const revalidate = 3600;
 
 // Cache reading time calculations for all posts
 const getReadingTimes = unstable_cache(
-  async (
-    postContents: { id: number; content: string }[]
-  ): Promise<Record<number, number>> => {
+  async (postContents) => {
     const wordsPerMinute = 200;
-    const readingTimes: Record<number, number> = {};
+    const readingTimes = {};
 
     for (const { id, content } of postContents) {
       const words = content.trim().split(/\s+/).length;
@@ -61,11 +59,7 @@ const getReadingTimes = unstable_cache(
 );
 
 // Directly fetch and prepare posts in the component without using getPaginatedPosts
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: { page?: string };
-}) {
+export default async function BlogPage({ searchParams }) {
   console.log("BlogPage - Component starting to render");
 
   // Get the current page from the URL params or default to 1
