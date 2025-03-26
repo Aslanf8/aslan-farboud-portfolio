@@ -20,6 +20,36 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Blog System
+
+This project includes a dynamic blog system implemented with Supabase as the backend. The blog features:
+
+- Dynamic routing with `/blog/[slug]` pattern
+- Efficient data fetching with Supabase
+- Optimized database schema with proper indexes
+- Static Site Generation (SSG) with incremental static regeneration
+
+### Setup
+
+1. Create a Supabase account and project at [supabase.com](https://supabase.com)
+2. Run the SQL commands from `supabase/schema.sql` in your Supabase SQL editor
+3. Copy `.env.local.example` to `.env.local` and fill in your Supabase credentials
+4. Start the development server
+
+### Blog Posts Management
+
+Blog posts are stored in the `blog_posts` table in Supabase. Each post requires:
+
+- A unique slug
+- Title
+- Content (HTML format)
+
+Optional fields include:
+
+- Description
+- Featured image URL
+- Author name
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
