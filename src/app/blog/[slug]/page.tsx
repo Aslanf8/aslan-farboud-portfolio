@@ -77,12 +77,15 @@ const getRelatedPosts = unstable_cache(
   { revalidate: 3600 }
 );
 
-export default async function BlogPost({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const post = await getPostBySlug(params.slug);
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function BlogPost({ params }: PageProps) {
+  const slug = params.slug;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
