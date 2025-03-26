@@ -3,12 +3,14 @@ import { getPostBySlug } from '@/lib/blog';
 // Set appropriate caching headers
 export const runtime = 'edge'; // Use edge runtime for better performance
 
-export async function GET(
-  request: Request,
-  { params }: { params: { slug: string } }
-) {
+export async function GET(request: Request) {
   try {
-    const post = await getPostBySlug(params.slug);
+    // Extract slug from URL
+    const url = new URL(request.url);
+    const pathParts = url.pathname.split('/');
+    const slug = pathParts[pathParts.length - 1];
+    
+    const post = await getPostBySlug(slug);
     
     if (!post) {
       return new Response(JSON.stringify({ message: 'Post not found' }), {
