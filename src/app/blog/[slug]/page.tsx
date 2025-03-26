@@ -10,16 +10,13 @@ import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Metadata } from "next";
 import { blogPosts } from "../data";
 
-interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
-}
+// Changed the interface to use the correct params type
+type Props = {
+  params: { slug: string };
+};
 
 // Generate metadata for each blog post
-export async function generateMetadata({
-  params,
-}: BlogPostPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = blogPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
@@ -50,7 +47,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
+export default function BlogPostPage({ params }: Props) {
   const post = blogPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
