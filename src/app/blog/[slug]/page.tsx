@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getAllSlugs, getPostBySlug, getAllPosts } from "@/lib/blog";
@@ -13,11 +12,7 @@ import { unstable_cache } from "next/cache";
 import Image from "next/image";
 
 // Generate metadata dynamically
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }) {
   const post = await getPostBySlug(params.slug);
 
   if (!post) {
@@ -58,7 +53,7 @@ export const revalidate = 3600;
 
 // Cache the reading time calculation with a persistent cache
 const getReadingTime = unstable_cache(
-  async (content: string): Promise<number> => {
+  async (content) => {
     const wordsPerMinute = 200;
     const words = content.trim().split(/\s+/).length;
     return Math.max(1, Math.ceil(words / wordsPerMinute));
@@ -69,7 +64,7 @@ const getReadingTime = unstable_cache(
 
 // Cache related posts data for 1 hour
 const getRelatedPosts = unstable_cache(
-  async (currentPostId: number) => {
+  async (currentPostId) => {
     const allPosts = await getAllPosts();
     return allPosts.filter((p) => p.id !== currentPostId).slice(0, 3);
   },
@@ -77,11 +72,7 @@ const getRelatedPosts = unstable_cache(
   { revalidate: 3600 }
 );
 
-export default async function BlogPost({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function BlogPost({ params }) {
   const post = await getPostBySlug(params.slug);
 
   if (!post) {
