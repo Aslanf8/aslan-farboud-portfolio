@@ -112,13 +112,13 @@ export function SkillsSection() {
 
         <div className="mt-8 sm:mt-12 md:mt-16 w-full max-w-[1200px]">
           <Tabs defaultValue="frontend" className="w-full">
-            <div className="flex justify-center mb-6 sm:mb-8 overflow-x-auto pb-2 sm:pb-0">
-              <TabsList className="grid w-full max-w-2xl grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
+            <div className="flex justify-center mb-6 sm:mb-8">
+              <TabsList className="flex flex-wrap justify-center w-full max-w-2xl">
                 {skillCategories.map((category) => (
                   <TabsTrigger
                     key={category.id}
                     value={category.id}
-                    className="text-xs sm:text-sm"
+                    className="text-xs sm:text-sm flex-1 min-w-[120px]"
                   >
                     {category.name}
                   </TabsTrigger>

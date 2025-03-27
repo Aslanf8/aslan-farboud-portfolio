@@ -17,10 +17,10 @@ export function HeroSection() {
             </span>
           </h1>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 dark:text-gray-300">
-            Full Stack & Mobile Developer at Simon Fraser University, passionate
-            about building innovative solutions across platforms. From iOS apps
-            to AI-powered web platforms, I create technology that enhances user
-            experiences and solves real-world problems.
+            I write code and build apps. Currently working on mobile and web
+            projects, with a focus on AI applications. Sometimes for clients,
+            often for myself – just following where my curiosity leads. Always
+            learning, always trying to make things that actually help people.
           </p>
           <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
             <Button asChild className="w-full sm:w-auto">
