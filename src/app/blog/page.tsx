@@ -142,53 +142,49 @@ export default async function BlogPage({ searchParams }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
 
-        <div className="container max-w-5xl mx-auto px-4 py-12">
-          <header className="mb-16 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+        <div className="container max-w-5xl mx-auto px-4 py-8 sm:py-12 md:py-16">
+          <header className="mb-8 sm:mb-12 md:mb-16 text-center">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-4">
               Blog
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base md:text-xl text-muted-foreground max-w-2xl mx-auto">
               Articles and thoughts on web development, technology, and more.
             </p>
           </header>
 
-          <main className="mb-20" aria-label="Blog posts">
+          <main className="mb-12 sm:mb-16 md:mb-20" aria-label="Blog posts">
             {currentPosts.length > 0 ? (
               <>
                 {currentPage === 1 && currentPosts.length > 0 && (
                   <>
                     {/* Featured Post (most recent) */}
-                    <section className="mb-16">
-                      <h2 className="text-2xl font-bold mb-6">
+                    <section className="mb-8 sm:mb-12 md:mb-16">
+                      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
                         Latest Article
                       </h2>
-                      <div className="featured-post group rounded-xl overflow-hidden border border-border bg-card hover:bg-accent/10 transition-all duration-300 shadow-sm hover:shadow-md">
+                      <div className="featured-post group rounded-lg sm:rounded-xl overflow-hidden border border-border bg-card hover:bg-accent/10 transition-all duration-300 shadow-sm hover:shadow-md">
                         <Link
                           href={`/blog/${currentPosts[0].slug}`}
                           className="block"
                           prefetch={true}
                         >
-                          <div className="md:grid grid-cols-2 gap-0">
+                          <div className="flex flex-col md:grid md:grid-cols-2 gap-0">
                             {/* Image section */}
                             <div className="relative overflow-hidden h-full">
                               {currentPosts[0].featured_image ? (
-                                <div className="h-full">
-                                  {/* <img
-                                    src={currentPosts[0].featured_image}
-                                    alt={currentPosts[0].title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                  /> */}
+                                <div className="h-48 sm:h-64 md:h-full">
                                   <Image
                                     src={currentPosts[0].featured_image}
                                     alt={currentPosts[0].title}
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                    width={1000}
-                                    height={1000}
+                                    width={800}
+                                    height={600}
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                   />
                                 </div>
                               ) : (
-                                <div className="bg-gradient-to-br from-primary/20 to-primary/5 h-full flex items-center justify-center">
-                                  <span className="text-5xl font-bold text-primary">
+                                <div className="bg-gradient-to-br from-primary/20 to-primary/5 h-48 sm:h-64 md:h-full flex items-center justify-center">
+                                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
                                     {currentPosts[0].title.charAt(0)}
                                   </span>
                                 </div>
@@ -196,8 +192,8 @@ export default async function BlogPage({ searchParams }) {
                             </div>
 
                             {/* Content section */}
-                            <div className="p-6 md:p-8 flex flex-col justify-center">
-                              <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
+                            <div className="p-4 sm:p-6 md:p-8 flex flex-col justify-center">
+                              <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
                                 <time dateTime={currentPosts[0].published_at}>
                                   {new Date(
                                     currentPosts[0].published_at
@@ -209,27 +205,27 @@ export default async function BlogPage({ searchParams }) {
                                 </time>
                                 <span>•</span>
                                 <span className="flex items-center">
-                                  <Clock size={14} className="mr-1.5" />
+                                  <Clock size={12} className="mr-1 sm:mr-1.5" />
                                   {readingTimes[currentPosts[0].id] || 1} min
                                   read
                                 </span>
                               </div>
 
-                              <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 group-hover:text-primary transition-colors">
+                              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight mb-3 sm:mb-4 group-hover:text-primary transition-colors">
                                 {currentPosts[0].title}
                               </h3>
 
                               {currentPosts[0].description && (
-                                <p className="text-muted-foreground mb-6 line-clamp-3">
+                                <p className="text-xs sm:text-sm md:text-base text-muted-foreground mb-4 sm:mb-6 line-clamp-3">
                                   {currentPosts[0].description}
                                 </p>
                               )}
 
-                              <div className="mt-auto inline-flex items-center text-primary font-medium">
+                              <div className="mt-auto inline-flex items-center text-sm sm:text-base text-primary font-medium">
                                 Read article
                                 <ArrowRight
-                                  size={16}
-                                  className="ml-2 group-hover:translate-x-1 transition-transform"
+                                  size={14}
+                                  className="ml-1 sm:ml-2 group-hover:translate-x-1 transition-transform"
                                 />
                               </div>
                             </div>
@@ -239,12 +235,14 @@ export default async function BlogPage({ searchParams }) {
                     </section>
 
                     {currentPosts.length > 1 && (
-                      <section className="mb-12">
-                        <div className="flex items-center justify-between mb-6">
-                          <h2 className="text-2xl font-bold">More Articles</h2>
+                      <section className="mb-8 sm:mb-12">
+                        <div className="flex items-center justify-between mb-4 sm:mb-6">
+                          <h2 className="text-xl sm:text-2xl font-bold">
+                            More Articles
+                          </h2>
                         </div>
-                        <Separator className="mb-10" />
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+                        <Separator className="mb-6 sm:mb-10" />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-x-6 md:gap-y-10">
                           {currentPosts.slice(1).map((post) => {
                             const readingTime = readingTimes[post.id] || 1;
 
@@ -330,27 +328,20 @@ export default async function BlogPage({ searchParams }) {
                                     {post.featured_image && (
                                       <div className="relative overflow-hidden">
                                         <AspectRatio ratio={16 / 9}>
-                                          {/* <img
-                                            src={post.featured_image}
-                                            alt={post.title}
-                                            className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
-                                            loading="lazy"
-                                            itemProp="image"
-                                          /> */}
                                           <Image
                                             src={post.featured_image}
                                             alt={post.title}
                                             className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
                                             loading="lazy"
                                             itemProp="image"
-                                            width={1000}
-                                            height={1000}
+                                            fill
+                                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                           />
                                         </AspectRatio>
                                       </div>
                                     )}
-                                    <CardContent className="p-5 flex flex-col flex-grow">
-                                      <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+                                    <CardContent className="p-4 sm:p-5 flex flex-col flex-grow">
+                                      <div className="flex items-center gap-2 sm:gap-3 text-xs text-muted-foreground mb-2 sm:mb-3">
                                         <time
                                           dateTime={post.published_at}
                                           itemProp="datePublished"
@@ -364,29 +355,29 @@ export default async function BlogPage({ searchParams }) {
                                           })}
                                         </time>
                                         <span className="flex items-center">
-                                          <Clock size={12} className="mr-1" />
+                                          <Clock size={10} className="mr-1" />
                                           {readingTime} min
                                         </span>
                                       </div>
 
                                       <h2
-                                        className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors line-clamp-2"
+                                        className="text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3 group-hover:text-primary transition-colors line-clamp-2"
                                         itemProp="headline"
                                       >
                                         {post.title}
                                       </h2>
                                       {post.description && (
                                         <p
-                                          className="text-muted-foreground mb-4 line-clamp-2 text-sm"
+                                          className="text-muted-foreground mb-3 sm:mb-4 line-clamp-2 text-xs sm:text-sm"
                                           itemProp="description"
                                         >
                                           {post.description}
                                         </p>
                                       )}
-                                      <div className="mt-auto flex items-center justify-end text-primary text-sm font-medium">
+                                      <div className="mt-auto flex items-center justify-end text-primary text-xs sm:text-sm font-medium">
                                         Read more
                                         <ArrowRight
-                                          size={14}
+                                          size={12}
                                           className="ml-1 group-hover:translate-x-1 transition-transform"
                                         />
                                       </div>
@@ -404,10 +395,10 @@ export default async function BlogPage({ searchParams }) {
 
                 {currentPage !== 1 && (
                   <section>
-                    <h2 className="text-2xl font-bold mb-10">
+                    <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-10">
                       Page {currentPage}
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-x-6 md:gap-y-10">
                       {currentPosts.map((post) => {
                         const readingTime = readingTimes[post.id] || 1;
 
@@ -487,27 +478,20 @@ export default async function BlogPage({ searchParams }) {
                                 {post.featured_image && (
                                   <div className="relative overflow-hidden">
                                     <AspectRatio ratio={16 / 9}>
-                                      {/* <img
-                                        src={post.featured_image}
-                                        alt={post.title}
-                                        className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
-                                        loading="lazy"
-                                        itemProp="image"
-                                      /> */}
                                       <Image
                                         src={post.featured_image}
                                         alt={post.title}
                                         className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
                                         loading="lazy"
                                         itemProp="image"
-                                        width={1000}
-                                        height={1000}
+                                        fill
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                       />
                                     </AspectRatio>
                                   </div>
                                 )}
-                                <CardContent className="p-5 flex flex-col flex-grow">
-                                  <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+                                <CardContent className="p-4 sm:p-5 flex flex-col flex-grow">
+                                  <div className="flex items-center gap-2 sm:gap-3 text-xs text-muted-foreground mb-2 sm:mb-3">
                                     <time
                                       dateTime={post.published_at}
                                       itemProp="datePublished"
@@ -521,29 +505,29 @@ export default async function BlogPage({ searchParams }) {
                                       })}
                                     </time>
                                     <span className="flex items-center">
-                                      <Clock size={12} className="mr-1" />
+                                      <Clock size={10} className="mr-1" />
                                       {readingTime} min
                                     </span>
                                   </div>
 
                                   <h2
-                                    className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors line-clamp-2"
+                                    className="text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3 group-hover:text-primary transition-colors line-clamp-2"
                                     itemProp="headline"
                                   >
                                     {post.title}
                                   </h2>
                                   {post.description && (
                                     <p
-                                      className="text-muted-foreground mb-4 line-clamp-2 text-sm"
+                                      className="text-muted-foreground mb-3 sm:mb-4 line-clamp-2 text-xs sm:text-sm"
                                       itemProp="description"
                                     >
                                       {post.description}
                                     </p>
                                   )}
-                                  <div className="mt-auto flex items-center justify-end text-primary text-sm font-medium">
+                                  <div className="mt-auto flex items-center justify-end text-primary text-xs sm:text-sm font-medium">
                                     Read more
                                     <ArrowRight
-                                      size={14}
+                                      size={12}
                                       className="ml-1 group-hover:translate-x-1 transition-transform"
                                     />
                                   </div>
@@ -558,10 +542,12 @@ export default async function BlogPage({ searchParams }) {
                 )}
               </>
             ) : (
-              <div className="text-center py-16">
-                <div className="mb-4 text-5xl">📝</div>
-                <h3 className="text-2xl font-semibold mb-2">No posts yet</h3>
-                <p className="text-muted-foreground">
+              <div className="text-center py-8 sm:py-12 md:py-16">
+                <div className="mb-4 text-4xl sm:text-5xl">📝</div>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2">
+                  No posts yet
+                </h3>
+                <p className="text-sm sm:text-base text-muted-foreground">
                   Check back soon for new content!
                 </p>
               </div>
@@ -571,7 +557,7 @@ export default async function BlogPage({ searchParams }) {
           {/* Pagination */}
           {totalPages > 1 && (
             <nav
-              className="flex items-center justify-center space-x-2"
+              className="flex items-center justify-center space-x-1 sm:space-x-2"
               aria-label="Blog pagination"
               role="navigation"
             >
@@ -582,13 +568,22 @@ export default async function BlogPage({ searchParams }) {
                   rel="prev"
                   prefetch={true}
                 >
-                  <Button variant="outline" size="icon">
-                    <ChevronLeft className="h-4 w-4" />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-8 w-8 sm:h-9 sm:w-9 p-0"
+                  >
+                    <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
                   </Button>
                 </Link>
               ) : (
-                <Button variant="outline" size="icon" disabled>
-                  <ChevronLeft className="h-4 w-4" />
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled
+                  className="h-8 w-8 sm:h-9 sm:w-9 p-0"
+                >
+                  <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
                 </Button>
               )}
 
@@ -602,6 +597,8 @@ export default async function BlogPage({ searchParams }) {
                 >
                   <Button
                     variant={currentPage === i + 1 ? "default" : "outline"}
+                    size="sm"
+                    className="h-8 w-8 sm:h-9 sm:w-9 p-0 text-xs sm:text-sm"
                   >
                     {i + 1}
                   </Button>
@@ -615,13 +612,22 @@ export default async function BlogPage({ searchParams }) {
                   rel="next"
                   prefetch={true}
                 >
-                  <Button variant="outline" size="icon">
-                    <ChevronRight className="h-4 w-4" />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="h-8 w-8 sm:h-9 sm:w-9 p-0"
+                  >
+                    <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
                   </Button>
                 </Link>
               ) : (
-                <Button variant="outline" size="icon" disabled>
-                  <ChevronRight className="h-4 w-4" />
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled
+                  className="h-8 w-8 sm:h-9 sm:w-9 p-0"
+                >
+                  <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
                 </Button>
               )}
             </nav>
@@ -632,15 +638,15 @@ export default async function BlogPage({ searchParams }) {
   } catch (error) {
     console.error("BlogPage - Error rendering page:", error);
     return (
-      <div className="container max-w-5xl mx-auto px-4 py-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+      <div className="container max-w-5xl mx-auto px-4 py-8 sm:py-12">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
           Blog
         </h1>
-        <div className="bg-destructive/10 p-6 rounded-lg mt-8">
-          <h2 className="text-lg font-medium text-destructive mb-2">
+        <div className="bg-destructive/10 p-4 sm:p-6 rounded-lg mt-6 sm:mt-8">
+          <h2 className="text-base sm:text-lg font-medium text-destructive mb-2">
             Error loading blog posts
           </h2>
-          <p>
+          <p className="text-sm sm:text-base">
             We encountered an issue loading the blog posts. Please try again
             later.
           </p>

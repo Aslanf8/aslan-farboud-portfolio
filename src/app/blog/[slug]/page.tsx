@@ -139,21 +139,21 @@ export default async function BlogPost({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="container max-w-5xl mx-auto px-4 py-12">
+      <div className="container max-w-5xl mx-auto px-4 py-8 sm:py-12 md:py-16">
         <Link
           href="/blog"
-          className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-10 group"
+          className="inline-flex items-center text-xs sm:text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-6 sm:mb-10 group"
           prefetch={true}
         >
           <ArrowLeft
-            size={16}
-            className="mr-2 group-hover:-translate-x-1 transition-transform"
+            size={14}
+            className="mr-1.5 sm:mr-2 group-hover:-translate-x-1 transition-transform"
           />
           Back to all posts
         </Link>
 
         <article
-          className="prose prose-lg dark:prose-invert max-w-none"
+          className="prose prose-sm sm:prose-base md:prose-lg dark:prose-invert max-w-none"
           itemScope
           itemType="https://schema.org/BlogPosting"
         >
@@ -187,9 +187,9 @@ export default async function BlogPost({ params }) {
             </div>
           </div>
 
-          <header className="not-prose mb-10">
+          <header className="not-prose mb-6 sm:mb-10">
             <h1
-              className="text-4xl md:text-5xl font-bold tracking-tight mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6"
               itemProp="headline"
             >
               {post.title}
@@ -197,22 +197,22 @@ export default async function BlogPost({ params }) {
 
             {post.description && (
               <p
-                className="text-xl text-muted-foreground mb-6"
+                className="text-sm sm:text-base md:text-xl text-muted-foreground mb-4 sm:mb-6"
                 itemProp="abstract"
               >
                 {post.description}
               </p>
             )}
 
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground mb-6 sm:mb-8">
               {post.author && (
-                <div className="flex items-center gap-1.5">
-                  <User size={16} className="text-primary" />
+                <div className="flex items-center gap-1 sm:gap-1.5">
+                  <User size={14} className="text-primary" />
                   <span itemProp="author">{post.author}</span>
                 </div>
               )}
-              <div className="flex items-center gap-1.5">
-                <CalendarDays size={16} className="text-primary" />
+              <div className="flex items-center gap-1 sm:gap-1.5">
+                <CalendarDays size={14} className="text-primary" />
                 <time dateTime={post.published_at} itemProp="datePublished">
                   {new Date(post.published_at).toLocaleDateString("en-US", {
                     year: "numeric",
@@ -221,17 +221,17 @@ export default async function BlogPost({ params }) {
                   })}
                 </time>
               </div>
-              <div className="flex items-center gap-1.5">
-                <Clock size={16} className="text-primary" />
+              <div className="flex items-center gap-1 sm:gap-1.5">
+                <Clock size={14} className="text-primary" />
                 <span>{readingTime} min read</span>
               </div>
             </div>
 
-            <Separator className="mb-8" />
+            <Separator className="mb-6 sm:mb-8" />
           </header>
 
           {post.featured_image && (
-            <div className="not-prose mb-10 rounded-xl overflow-hidden shadow-lg">
+            <div className="not-prose mb-6 sm:mb-10 rounded-lg sm:rounded-xl overflow-hidden shadow-md sm:shadow-lg">
               <AspectRatio ratio={21 / 9}>
                 <Image
                   src={post.featured_image}
@@ -240,7 +240,7 @@ export default async function BlogPost({ params }) {
                   loading="eager"
                   priority
                   fill
-                  sizes="(max-width: 768px) 100vw, 1200px"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
                   itemProp="image"
                 />
               </AspectRatio>
@@ -248,17 +248,17 @@ export default async function BlogPost({ params }) {
           )}
 
           <div
-            className="prose-headings:font-bold prose-headings:tracking-tight prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-md"
+            className="prose-headings:font-bold prose-headings:tracking-tight prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg sm:prose-img:rounded-xl prose-img:shadow-md text-sm sm:text-base md:text-lg"
             dangerouslySetInnerHTML={{ __html: post.content }}
             itemProp="articleBody"
           />
 
-          <Separator className="my-16" />
+          <Separator className="my-8 sm:my-12 md:my-16" />
 
           {/* Post Navigation */}
           <nav
             aria-label="Post navigation"
-            className="not-prose grid grid-cols-1 md:grid-cols-2 gap-6 mb-16"
+            className="not-prose grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 mb-8 sm:mb-12 md:mb-16"
           >
             {prevPost && (
               <Link
@@ -267,15 +267,15 @@ export default async function BlogPost({ params }) {
                 rel="prev"
                 prefetch={true}
               >
-                <div className="flex flex-col h-full p-6 border rounded-lg bg-card hover:bg-accent/10 transition-colors">
-                  <div className="text-sm text-muted-foreground mb-2 flex items-center">
+                <div className="flex flex-col h-full p-4 sm:p-6 border rounded-lg bg-card hover:bg-accent/10 transition-colors">
+                  <div className="text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2 flex items-center">
                     <ArrowLeft
-                      size={14}
+                      size={12}
                       className="mr-1 group-hover:-translate-x-1 transition-transform"
                     />
                     Previous Post
                   </div>
-                  <h3 className="font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                  <h3 className="text-sm sm:text-base font-semibold group-hover:text-primary transition-colors line-clamp-2">
                     {prevPost.title}
                   </h3>
                 </div>
@@ -289,15 +289,15 @@ export default async function BlogPost({ params }) {
                 rel="next"
                 prefetch={true}
               >
-                <div className="flex flex-col h-full p-6 border rounded-lg bg-card hover:bg-accent/10 transition-colors text-right">
-                  <div className="text-sm text-muted-foreground mb-2 flex items-center justify-end">
+                <div className="flex flex-col h-full p-4 sm:p-6 border rounded-lg bg-card hover:bg-accent/10 transition-colors text-right">
+                  <div className="text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2 flex items-center justify-end">
                     Next Post
                     <ArrowRight
-                      size={14}
+                      size={12}
                       className="ml-1 group-hover:translate-x-1 transition-transform"
                     />
                   </div>
-                  <h3 className="font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                  <h3 className="text-sm sm:text-base font-semibold group-hover:text-primary transition-colors line-clamp-2">
                     {nextPost.title}
                   </h3>
                 </div>
@@ -308,10 +308,10 @@ export default async function BlogPost({ params }) {
           <div className="not-prose flex items-center justify-between">
             <Link
               href="/blog"
-              className="inline-flex items-center text-sm font-medium text-primary hover:underline"
+              className="inline-flex items-center text-xs sm:text-sm font-medium text-primary hover:underline"
               prefetch={true}
             >
-              <ArrowLeft size={16} className="mr-2" />
+              <ArrowLeft size={14} className="mr-1.5 sm:mr-2" />
               Back to all posts
             </Link>
 
@@ -320,11 +320,17 @@ export default async function BlogPost({ params }) {
         </article>
 
         {relatedPosts.length > 0 && (
-          <section className="mt-16" aria-labelledby="related-posts-heading">
-            <h2 id="related-posts-heading" className="text-2xl font-bold mb-8">
+          <section
+            className="mt-8 sm:mt-12 md:mt-16"
+            aria-labelledby="related-posts-heading"
+          >
+            <h2
+              id="related-posts-heading"
+              className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8"
+            >
               More Articles
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
               {relatedPosts.map((relatedPost) => (
                 <Link
                   key={relatedPost.id}
@@ -341,18 +347,18 @@ export default async function BlogPost({ params }) {
                           className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                           fill
-                          sizes="(max-width: 768px) 100vw, 400px"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
                       ) : (
                         <div className="bg-gradient-to-br from-gray-700 to-gray-900 w-full h-full flex items-center justify-center text-white">
-                          <span className="text-2xl font-bold">
+                          <span className="text-xl sm:text-2xl font-bold">
                             {relatedPost.title.charAt(0)}
                           </span>
                         </div>
                       )}
                     </AspectRatio>
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                    <CardContent className="p-3 sm:p-4">
+                      <h3 className="font-semibold text-base sm:text-lg mb-1.5 sm:mb-2 group-hover:text-primary transition-colors line-clamp-2">
                         {relatedPost.title}
                       </h3>
                       <div className="text-xs text-muted-foreground">

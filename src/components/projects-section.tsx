@@ -105,25 +105,27 @@ const projects = [
 
 export function ProjectsSection() {
   return (
-    <section className="py-12 md:py-32">
+    <section className="py-10 sm:py-12 md:py-16 lg:py-24">
       <div className="container px-4 md:px-6 mx-auto flex flex-col items-center">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <div className="flex flex-col items-center justify-center space-y-3 sm:space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Featured Projects
             </h2>
-            <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            <p className="max-w-[900px] text-sm sm:text-base text-gray-500 md:text-lg/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
               A selection of projects I&apos;ve built and contributed to.
             </p>
           </div>
         </div>
 
-        <div className="w-full max-w-[1200px] mt-12">
-          <h3 className="text-xl font-semibold mb-6">Client Projects</h3>
-          <p className="text-gray-500 mb-6">
+        <div className="w-full max-w-[1200px] mt-8 sm:mt-12">
+          <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">
+            Client Projects
+          </h3>
+          <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">
             Businesses that contracted me to develop custom software solutions.
           </p>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mb-12">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 mb-8 sm:mb-12">
             {projects
               .filter(
                 (project) =>
@@ -134,7 +136,7 @@ export function ProjectsSection() {
                   key={project.id}
                   className="h-full flex flex-col overflow-hidden border-2 transition-colors hover:border-primary"
                 >
-                  <div className="relative h-[200px] overflow-hidden">
+                  <div className="relative h-[150px] sm:h-[200px] overflow-hidden">
                     {project.image ? (
                       <div className="relative h-full w-full flex items-center justify-center p-4">
                         <Image
@@ -153,20 +155,33 @@ export function ProjectsSection() {
                       </div>
                     )}
                   </div>
-                  <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
+                  <CardHeader className="p-4 sm:p-6">
+                    <CardTitle className="text-lg sm:text-xl">
+                      {project.title}
+                    </CardTitle>
+                    <CardDescription className="text-sm sm:text-base mt-1">
+                      {project.description}
+                    </CardDescription>
                   </CardHeader>
-                  <CardContent className="flex-grow">
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {project.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary">
+                  <CardContent className="flex-grow p-4 sm:p-6 pt-0 sm:pt-0">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2">
+                      {project.tags.slice(0, 6).map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="text-xs sm:text-sm"
+                        >
                           {tag}
                         </Badge>
                       ))}
+                      {project.tags.length > 6 && (
+                        <Badge variant="outline" className="text-xs sm:text-sm">
+                          +{project.tags.length - 6} more
+                        </Badge>
+                      )}
                     </div>
                   </CardContent>
-                  <CardFooter className="flex justify-between">
+                  <CardFooter className="flex justify-between p-4 sm:p-6">
                     <Button asChild variant="outline" size="sm">
                       <Link href={project.link}>View Details</Link>
                     </Button>
@@ -205,11 +220,13 @@ export function ProjectsSection() {
               ))}
           </div>
 
-          <h3 className="text-xl font-semibold mb-6">Personal Projects</h3>
-          <p className="text-gray-500 mb-6">
+          <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">
+            Personal Projects
+          </h3>
+          <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">
             Projects built out of curiosity and personal interest.
           </p>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {projects
               .filter(
                 (project) =>
@@ -220,13 +237,14 @@ export function ProjectsSection() {
                   key={project.id}
                   className="h-full flex flex-col overflow-hidden border-2 transition-colors hover:border-primary"
                 >
-                  <div className="relative h-[200px] overflow-hidden">
+                  <div className="relative h-[150px] sm:h-[200px] overflow-hidden">
                     {project.image ? (
                       <div className="relative h-full w-full flex items-center justify-center p-4">
                         <Image
                           src={project.image}
                           alt={project.title}
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-contain transition-transform duration-300 hover:scale-105"
                         />
                       </div>
@@ -238,20 +256,33 @@ export function ProjectsSection() {
                       </div>
                     )}
                   </div>
-                  <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
+                  <CardHeader className="p-4 sm:p-6">
+                    <CardTitle className="text-lg sm:text-xl">
+                      {project.title}
+                    </CardTitle>
+                    <CardDescription className="text-sm sm:text-base mt-1">
+                      {project.description}
+                    </CardDescription>
                   </CardHeader>
-                  <CardContent className="flex-grow">
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {project.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary">
+                  <CardContent className="flex-grow p-4 sm:p-6 pt-0 sm:pt-0">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2">
+                      {project.tags.slice(0, 5).map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="text-xs sm:text-sm"
+                        >
                           {tag}
                         </Badge>
                       ))}
+                      {project.tags.length > 5 && (
+                        <Badge variant="outline" className="text-xs sm:text-sm">
+                          +{project.tags.length - 5} more
+                        </Badge>
+                      )}
                     </div>
                   </CardContent>
-                  <CardFooter className="flex justify-between">
+                  <CardFooter className="flex justify-between p-4 sm:p-6">
                     <Button asChild variant="outline" size="sm">
                       <Link href={project.link}>View Details</Link>
                     </Button>
@@ -280,7 +311,10 @@ export function ProjectsSection() {
                           </a>
                         </Button>
                       ) : project.comingSoon ? (
-                        <Badge variant="outline" className="ml-2">
+                        <Badge
+                          variant="outline"
+                          className="ml-2 text-xs sm:text-sm"
+                        >
                           Coming Soon
                         </Badge>
                       ) : null}
@@ -291,7 +325,7 @@ export function ProjectsSection() {
           </div>
         </div>
 
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-8 sm:mt-12">
           <Button asChild>
             <Link href="/projects">View All Projects</Link>
           </Button>

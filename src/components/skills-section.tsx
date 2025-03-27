@@ -97,25 +97,29 @@ const skillCategories = [
 
 export function SkillsSection() {
   return (
-    <section className="py-12 md:py-24 bg-slate-50 dark:bg-slate-900">
+    <section className="py-10 sm:py-12 md:py-16 lg:py-24 bg-slate-50 dark:bg-slate-900">
       <div className="container px-4 md:px-6 mx-auto flex flex-col items-center">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <div className="flex flex-col items-center justify-center space-y-3 sm:space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Technical Skills
             </h2>
-            <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            <p className="max-w-[900px] text-sm sm:text-base text-gray-500 md:text-lg/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
               My expertise across various technologies and domains.
             </p>
           </div>
         </div>
 
-        <div className="mt-12 md:mt-16 w-full max-w-[1200px]">
+        <div className="mt-8 sm:mt-12 md:mt-16 w-full max-w-[1200px]">
           <Tabs defaultValue="frontend" className="w-full">
-            <div className="flex justify-center mb-8">
-              <TabsList className="grid w-full max-w-2xl grid-cols-2 md:grid-cols-5">
+            <div className="flex justify-center mb-6 sm:mb-8 overflow-x-auto pb-2 sm:pb-0">
+              <TabsList className="grid w-full max-w-2xl grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
                 {skillCategories.map((category) => (
-                  <TabsTrigger key={category.id} value={category.id}>
+                  <TabsTrigger
+                    key={category.id}
+                    value={category.id}
+                    className="text-xs sm:text-sm"
+                  >
                     {category.name}
                   </TabsTrigger>
                 ))}
@@ -129,9 +133,11 @@ export function SkillsSection() {
                 className="space-y-4"
               >
                 <Card>
-                  <CardHeader>
-                    <CardTitle>{category.name} Skills</CardTitle>
-                    <CardDescription>
+                  <CardHeader className="p-4 sm:p-6">
+                    <CardTitle className="text-lg sm:text-xl">
+                      {category.name} Skills
+                    </CardTitle>
+                    <CardDescription className="text-sm sm:text-base">
                       {category.id === "frontend" &&
                         "Building modern, responsive user interfaces"}
                       {category.id === "backend" &&
@@ -144,13 +150,13 @@ export function SkillsSection() {
                         "Creating cross-platform mobile experiences"}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
+                  <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {category.skills.map((skill) => (
                         <Badge
                           key={skill}
                           variant="secondary"
-                          className="text-sm py-1 px-2"
+                          className="text-xs sm:text-sm py-1 px-2"
                         >
                           {skill}
                         </Badge>

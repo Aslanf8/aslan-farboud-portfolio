@@ -21,27 +21,29 @@ import { projects } from "./[slug]/page";
 export default function ProjectsPage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-40 w-full border-b bg-background">
+      <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm">
         <MainNav />
       </header>
       <main className="flex-1">
-        <div className="container py-12 md:py-16 mx-auto flex flex-col items-center">
-          <div className="space-y-4 text-center w-full">
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+        <div className="container px-4 py-8 sm:py-12 md:py-16 mx-auto flex flex-col items-center">
+          <div className="space-y-3 sm:space-y-4 text-center w-full">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
               My Projects
             </h1>
-            <p className="mx-auto max-w-[700px] text-lg text-muted-foreground md:text-xl">
+            <p className="mx-auto max-w-[700px] text-sm sm:text-base md:text-lg text-muted-foreground">
               A collection of my work across various technologies and domains.
             </p>
           </div>
 
-          <div className="w-full max-w-[1200px] mt-12">
-            <h2 className="text-2xl font-semibold mb-6">Client Projects</h2>
-            <p className="mb-6 text-muted-foreground">
+          <div className="w-full max-w-[1200px] mt-8 sm:mt-12">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-6">
+              Client Projects
+            </h2>
+            <p className="mb-4 sm:mb-6 text-sm sm:text-base text-muted-foreground">
               Businesses that contracted me to develop custom software
               solutions.
             </p>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mb-16">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 md:grid-cols-2 mb-8 sm:mb-16">
               {projects
                 .filter((project) =>
                   ["tfi-group", "traceit"].includes(project.id)
@@ -51,40 +53,62 @@ export default function ProjectsPage() {
                     key={project.id}
                     className="h-full flex flex-col overflow-hidden border-2 transition-colors hover:border-primary"
                   >
-                    <div className="relative h-[200px] overflow-hidden">
+                    <div className="relative h-[150px] sm:h-[200px] overflow-hidden">
                       {project.image ? (
                         <div className="relative h-full w-full flex items-center justify-center p-4">
                           <Image
                             src={project.image}
                             alt={project.title}
-                            width={250}
-                            height={350}
+                            width={200}
+                            height={200}
                             className="object-contain transition-transform duration-300 hover:scale-105"
+                            sizes="(max-width: 768px) 200px, 250px"
                           />
                         </div>
                       ) : (
                         <div className="flex h-full w-full items-center justify-center bg-slate-200 dark:bg-slate-800">
-                          <span className="text-lg font-medium">
+                          <span className="text-base sm:text-lg font-medium">
                             {project.title}
                           </span>
                         </div>
                       )}
                     </div>
-                    <CardHeader>
-                      <CardTitle>{project.title}</CardTitle>
-                      <CardDescription>{project.description}</CardDescription>
+                    <CardHeader className="p-4 sm:p-6">
+                      <CardTitle className="text-lg sm:text-xl">
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className="text-sm sm:text-base mt-1">
+                        {project.description}
+                      </CardDescription>
                     </CardHeader>
-                    <CardContent className="flex-grow">
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {project.tags.map((tag) => (
-                          <Badge key={tag} variant="secondary">
+                    <CardContent className="flex-grow p-4 sm:p-6 pt-0 sm:pt-0">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2">
+                        {project.tags.slice(0, 6).map((tag) => (
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="text-xs sm:text-sm"
+                          >
                             {tag}
                           </Badge>
                         ))}
+                        {project.tags.length > 6 && (
+                          <Badge
+                            variant="outline"
+                            className="text-xs sm:text-sm"
+                          >
+                            +{project.tags.length - 6} more
+                          </Badge>
+                        )}
                       </div>
                     </CardContent>
-                    <CardFooter className="flex justify-between">
-                      <Button asChild variant="outline" size="sm">
+                    <CardFooter className="flex justify-between p-4 sm:p-6">
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm"
+                      >
                         <Link href={`/projects/${project.id}`}>
                           View Details
                         </Link>
@@ -114,7 +138,7 @@ export default function ProjectsPage() {
                             </a>
                           </Button>
                         ) : project.comingSoon ? (
-                          <Badge variant="outline" className="ml-2">
+                          <Badge variant="outline" className="ml-2 text-xs">
                             Coming Soon
                           </Badge>
                         ) : null}
@@ -124,11 +148,13 @@ export default function ProjectsPage() {
                 ))}
             </div>
 
-            <h2 className="text-2xl font-semibold mb-6">Personal Projects</h2>
-            <p className="mb-6 text-muted-foreground">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-6">
+              Personal Projects
+            </h2>
+            <p className="mb-4 sm:mb-6 text-sm sm:text-base text-muted-foreground">
               Projects built out of curiosity and personal interest.
             </p>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
               {projects
                 .filter(
                   (project) => !["tfi-group", "traceit"].includes(project.id)
@@ -138,7 +164,7 @@ export default function ProjectsPage() {
                     key={project.id}
                     className="h-full flex flex-col overflow-hidden border-2 transition-colors hover:border-primary"
                   >
-                    <div className="relative h-[200px] overflow-hidden">
+                    <div className="relative h-[150px] sm:h-[200px] overflow-hidden">
                       {project.image ? (
                         <div className="relative h-full w-full flex items-center justify-center p-4">
                           <Image
@@ -146,31 +172,53 @@ export default function ProjectsPage() {
                             alt={project.title}
                             fill
                             className="object-contain transition-transform duration-300 hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           />
                         </div>
                       ) : (
                         <div className="flex h-full w-full items-center justify-center bg-slate-200 dark:bg-slate-800">
-                          <span className="text-lg font-medium">
+                          <span className="text-base sm:text-lg font-medium">
                             {project.title}
                           </span>
                         </div>
                       )}
                     </div>
-                    <CardHeader>
-                      <CardTitle>{project.title}</CardTitle>
-                      <CardDescription>{project.description}</CardDescription>
+                    <CardHeader className="p-4 sm:p-6">
+                      <CardTitle className="text-lg sm:text-xl">
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className="text-sm sm:text-base mt-1">
+                        {project.description}
+                      </CardDescription>
                     </CardHeader>
-                    <CardContent className="flex-grow">
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {project.tags.map((tag) => (
-                          <Badge key={tag} variant="secondary">
+                    <CardContent className="flex-grow p-4 sm:p-6 pt-0 sm:pt-0">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2">
+                        {project.tags.slice(0, 5).map((tag) => (
+                          <Badge
+                            key={tag}
+                            variant="secondary"
+                            className="text-xs sm:text-sm"
+                          >
                             {tag}
                           </Badge>
                         ))}
+                        {project.tags.length > 5 && (
+                          <Badge
+                            variant="outline"
+                            className="text-xs sm:text-sm"
+                          >
+                            +{project.tags.length - 5} more
+                          </Badge>
+                        )}
                       </div>
                     </CardContent>
-                    <CardFooter className="flex justify-between">
-                      <Button asChild variant="outline" size="sm">
+                    <CardFooter className="flex justify-between p-4 sm:p-6">
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm"
+                      >
                         <Link href={`/projects/${project.id}`}>
                           View Details
                         </Link>
@@ -200,7 +248,7 @@ export default function ProjectsPage() {
                             </a>
                           </Button>
                         ) : project.comingSoon ? (
-                          <Badge variant="outline" className="ml-2">
+                          <Badge variant="outline" className="ml-2 text-xs">
                             Coming Soon
                           </Badge>
                         ) : null}

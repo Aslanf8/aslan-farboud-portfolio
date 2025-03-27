@@ -258,64 +258,75 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <MainNav />
       </header>
       <main className="flex-1">
-        <div className="container max-w-4xl py-16 md:py-24 px-4 mx-auto">
-          <div className="flex items-center space-x-2 mb-12">
+        <div className="container max-w-4xl py-8 sm:py-12 md:py-16 lg:py-24 px-4 mx-auto">
+          <div className="flex items-center space-x-2 mb-6 sm:mb-12">
             <Button
               variant="ghost"
               size="sm"
               asChild
-              className="group transition-all duration-200 hover:translate-x-[-2px]"
+              className="group transition-all duration-200 hover:translate-x-[-2px] text-xs sm:text-sm"
             >
               <Link href="/projects">
-                <ChevronLeft className="h-4 w-4 mr-1 group-hover:transform group-hover:translate-x-[-2px] transition-transform" />
+                <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 group-hover:transform group-hover:translate-x-[-2px] transition-transform" />
                 Back to Projects
               </Link>
             </Button>
           </div>
 
           {/* Project Header with Image */}
-          <div className="flex flex-col items-center text-center mb-16">
-            <div className="w-full max-w-[250px] h-[250px] mb-8 rounded-2xl overflow-hidden border-2 border-primary/20 shadow-lg transition-transform duration-500 hover:scale-105">
+          <div className="flex flex-col items-center text-center mb-8 sm:mb-16">
+            <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[250px] h-[180px] sm:h-[220px] md:h-[250px] mb-6 sm:mb-8 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-primary/20 shadow-lg transition-transform duration-500 hover:scale-105">
               {project.image ? (
                 <div className="relative h-full w-full flex items-center justify-center p-4 bg-white/5 backdrop-blur-sm">
                   <Image
                     src={project.image}
                     alt={project.title}
-                    width={200}
-                    height={200}
+                    width={180}
+                    height={180}
                     className="object-contain transition-all duration-700 hover:scale-110"
+                    sizes="(max-width: 640px) 180px, (max-width: 768px) 220px, 250px"
                   />
                 </div>
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-slate-200/50 dark:bg-slate-800/50">
-                  <span className="text-xl font-medium">{project.title}</span>
+                  <span className="text-lg sm:text-xl font-medium">
+                    {project.title}
+                  </span>
                 </div>
               )}
             </div>
 
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-3 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
               {project.title}
             </h1>
 
-            <div className="flex flex-wrap justify-center gap-2 mt-4 mb-6">
-              {project.tags.map((tag) => (
+            <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mt-3 sm:mt-4 mb-4 sm:mb-6">
+              {project.tags.slice(0, 8).map((tag) => (
                 <Badge
                   key={tag}
                   variant="secondary"
-                  className="px-3 py-1 text-sm"
+                  className="px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm"
                 >
                   {tag}
                 </Badge>
               ))}
+              {project.tags.length > 8 && (
+                <Badge
+                  variant="outline"
+                  className="px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm"
+                >
+                  +{project.tags.length - 8} more
+                </Badge>
+              )}
             </div>
 
-            <p className="text-xl text-muted-foreground max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl">
               {project.description}
             </p>
 
             {isClientProject && (
-              <div className="mt-4 px-6 py-3 rounded-lg bg-yellow-500/10 border border-yellow-500/30 text-yellow-600 dark:text-yellow-400 max-w-2xl">
-                <p className="text-sm font-medium">
+              <div className="mt-4 px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-yellow-500/10 border border-yellow-500/30 text-yellow-600 dark:text-yellow-400 max-w-2xl">
+                <p className="text-xs sm:text-sm font-medium">
                   This is a proprietary client project. Live demo access is
                   restricted due to confidentiality agreements.
                 </p>
@@ -324,43 +335,43 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </div>
 
           {/* Project Details */}
-          <div className="grid grid-cols-1 gap-12">
-            <div className="prose prose-lg dark:prose-invert max-w-none">
-              <div className="mb-12 p-8 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm">
-                <p className="whitespace-pre-line text-lg leading-relaxed">
+          <div className="grid grid-cols-1 gap-6 sm:gap-12">
+            <div className="prose prose-sm sm:prose-base md:prose-lg dark:prose-invert max-w-none">
+              <div className="mb-6 sm:mb-12 p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm">
+                <p className="whitespace-pre-line text-sm sm:text-base md:text-lg leading-relaxed">
                   {project.longDescription}
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-                <div className="p-8 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/30">
-                  <h2 className="text-2xl font-bold mb-6 flex items-center">
-                    <span className="inline-block w-2 h-8 bg-primary mr-3 rounded-full"></span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 mb-6 sm:mb-12">
+                <div className="p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/30">
+                  <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
+                    <span className="inline-block w-1.5 sm:w-2 h-6 sm:h-8 bg-primary mr-2 sm:mr-3 rounded-full"></span>
                     Features
                   </h2>
-                  <ul className="space-y-3 list-none pl-0">
+                  <ul className="space-y-2 sm:space-y-3 list-none pl-0">
                     {project.features.map((feature) => (
                       <li key={feature} className="flex items-start">
-                        <div className="min-w-5 min-h-5 rounded-full bg-primary/20 flex items-center justify-center mr-3 mt-1">
-                          <div className="w-2 h-2 rounded-full bg-primary"></div>
+                        <div className="min-w-4 min-h-4 sm:min-w-5 sm:min-h-5 rounded-full bg-primary/20 flex items-center justify-center mr-2 sm:mr-3 mt-1">
+                          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary"></div>
                         </div>
-                        <span>{feature}</span>
+                        <span className="text-sm sm:text-base">{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="p-8 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/30">
-                  <h2 className="text-2xl font-bold mb-6 flex items-center">
-                    <span className="inline-block w-2 h-8 bg-primary mr-3 rounded-full"></span>
+                <div className="p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/30">
+                  <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
+                    <span className="inline-block w-1.5 sm:w-2 h-6 sm:h-8 bg-primary mr-2 sm:mr-3 rounded-full"></span>
                     Technologies
                   </h2>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {project.tech.map((tech) => (
                       <Badge
                         key={tech}
                         variant="outline"
-                        className="px-3 py-1.5 text-sm bg-background/50 hover:bg-primary/10 transition-colors duration-200"
+                        className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 hover:bg-primary/10 transition-colors duration-200"
                       >
                         {tech}
                       </Badge>
@@ -369,21 +380,21 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 </div>
               </div>
 
-              <div className="flex flex-wrap justify-center gap-4 mt-12">
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-12">
                 {isClientProject ? (
                   <Button
                     variant="outline"
-                    size="lg"
-                    className="cursor-not-allowed opacity-70"
+                    size="sm"
+                    className="text-xs sm:text-sm cursor-not-allowed opacity-70 w-full sm:w-auto"
                     disabled
                   >
-                    <ExternalLink className="mr-2 h-4 w-4" />
+                    <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                     Client Project (Access Restricted)
                   </Button>
                 ) : project.live ? (
                   <Button
-                    size="lg"
-                    className="group transition-all duration-300 hover:scale-105"
+                    size="sm"
+                    className="text-xs sm:text-sm group transition-all duration-300 hover:scale-105 w-full sm:w-auto"
                     asChild
                   >
                     <a
@@ -391,15 +402,15 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <ExternalLink className="mr-2 h-4 w-4 group-hover:translate-y-[-1px] group-hover:translate-x-[1px] transition-transform duration-300" />
+                      <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-y-[-1px] group-hover:translate-x-[1px] transition-transform duration-300" />
                       Visit Live Site
                     </a>
                   </Button>
                 ) : project.comingSoon ? (
-                  <div className="flex items-center">
+                  <div className="flex items-center w-full sm:w-auto">
                     <Badge
                       variant="outline"
-                      className="px-4 py-2 text-md border-primary/30 bg-primary/5"
+                      className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm md:text-md border-primary/30 bg-primary/5 w-full sm:w-auto text-center"
                     >
                       Coming Soon: {project.comingSoon}
                     </Badge>
@@ -408,8 +419,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 {project.github && (
                   <Button
                     variant="outline"
-                    size="lg"
-                    className="group transition-all duration-300 hover:scale-105"
+                    size="sm"
+                    className="text-xs sm:text-sm group transition-all duration-300 hover:scale-105 w-full sm:w-auto"
                     asChild
                   >
                     <a
@@ -417,7 +428,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Github className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
+                      <Github className="mr-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:rotate-12 transition-transform duration-300" />
                       View Source
                     </a>
                   </Button>
@@ -425,8 +436,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 {project.appStore && (
                   <Button
                     variant="outline"
-                    size="lg"
-                    className="group transition-all duration-300 hover:scale-105"
+                    size="sm"
+                    className="text-xs sm:text-sm group transition-all duration-300 hover:scale-105 w-full sm:w-auto"
                     asChild
                   >
                     <a
@@ -444,7 +455,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform duration-300"
+                        className="mr-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:scale-110 transition-transform duration-300"
                       >
                         <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z" />
                         <path d="M10 2c1 .5 2 2 2 5" />

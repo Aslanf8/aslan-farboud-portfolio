@@ -18,7 +18,7 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "Aslan Farboud | Web Developer & Designer",
   description:
-    "Personal portfolio of Aslan Farboud, a web developer and designer specializing in modern web technologies and user experience.",
+    "Personal portfolio of Aslan Farboud, a full stack and mobile developer specializing in modern web technologies, iOS development, and AI integration. Building innovative solutions across platforms.",
   keywords: [
     "web developer",
     "designer",
