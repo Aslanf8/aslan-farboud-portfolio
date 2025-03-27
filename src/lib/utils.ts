@@ -18,7 +18,7 @@ export function formatBlogContent(content: string): string {
   if (!content) return '';
   
   // Process content with various formatting rules
-  let formattedContent = content
+  const formattedContent = content
     // Handle existing HTML
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
