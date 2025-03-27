@@ -198,7 +198,7 @@ export function ProjectsSection() {
                           </a>
                         </Button>
                       )}
-                      {project.live ? (
+                      {project.live && project.id !== "tfi-group" ? (
                         <Button size="icon" variant="ghost" asChild>
                           <a
                             href={project.live}
