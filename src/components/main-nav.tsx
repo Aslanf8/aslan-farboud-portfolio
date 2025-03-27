@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown, ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -27,10 +27,16 @@ import {
 
 export function MainNav() {
   const [open, setOpen] = useState(false);
+  const [projectsExpanded, setProjectsExpanded] = useState(false);
 
   // Close the sheet when a navigation link is clicked
   const handleLinkClick = () => {
     setOpen(false);
+  };
+
+  // Toggle projects section expansion
+  const toggleProjects = () => {
+    setProjectsExpanded(!projectsExpanded);
   };
 
   return (
@@ -93,90 +99,103 @@ export function MainNav() {
                   </Link>
 
                   <div className="py-2">
-                    <div className="flex items-center text-lg font-medium mb-4 p-2">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 mr-4 shadow-sm">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="text-primary"
-                        >
-                          <rect width="8" height="8" x="2" y="2" rx="1" />
-                          <path d="M14 2c.3 0 .5 0 .8.1a2 2 0 0 1 1.1 1.1c.1.3.1.5.1.8v5c0 .3 0 .5-.1.8a2 2 0 0 1-1.1 1.1c-.3.1-.5.1-.8.1h-5c-.3 0-.5 0-.8-.1a2 2 0 0 1-1.1-1.1c-.1-.3-.1-.5-.1-.8v-5c0-.3 0-.5.1-.8a2 2 0 0 1 1.1-1.1c.3-.1.5-.1.8-.1h5Z" />
-                          <rect width="8" height="8" x="2" y="14" rx="1" />
-                          <rect width="8" height="8" x="14" y="14" rx="1" />
-                        </svg>
+                    <button
+                      onClick={toggleProjects}
+                      className="flex items-center justify-between w-full text-lg font-medium mb-4 p-2 rounded-lg hover:bg-primary/5 transition-colors"
+                    >
+                      <div className="flex items-center">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 mr-4 shadow-sm">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-primary"
+                          >
+                            <rect width="8" height="8" x="2" y="2" rx="1" />
+                            <path d="M14 2c.3 0 .5 0 .8.1a2 2 0 0 1 1.1 1.1c.1.3.1.5.1.8v5c0 .3 0 .5-.1.8a2 2 0 0 1-1.1 1.1c-.3.1-.5.1-.8.1h-5c-.3 0-.5 0-.8-.1a2 2 0 0 1-1.1-1.1c-.1-.3-.1-.5-.1-.8v-5c0-.3 0-.5.1-.8a2 2 0 0 1 1.1-1.1c.3-.1.5-.1.8-.1h5Z" />
+                            <rect width="8" height="8" x="2" y="14" rx="1" />
+                            <rect width="8" height="8" x="14" y="14" rx="1" />
+                          </svg>
+                        </div>
+                        Projects
                       </div>
-                      Projects
-                    </div>
-                    <div className="ml-14 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <Link
-                        href="/projects"
-                        className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
-                        onClick={handleLinkClick}
-                      >
-                        <span className="font-medium">All Projects</span>
-                        <span className="text-xs text-muted-foreground mt-1">
-                          View portfolio
-                        </span>
-                      </Link>
-                      <Link
-                        href="/projects/tfi-group"
-                        className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
-                        onClick={handleLinkClick}
-                      >
-                        <span className="font-medium">TFI Group</span>
-                        <span className="text-xs text-muted-foreground mt-1">
-                          AI platform
-                        </span>
-                      </Link>
-                      <Link
-                        href="/projects/daily-vocab"
-                        className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
-                        onClick={handleLinkClick}
-                      >
-                        <span className="font-medium">DailyVocab</span>
-                        <span className="text-xs text-muted-foreground mt-1">
-                          Vocabulary app
-                        </span>
-                      </Link>
-                      <Link
-                        href="/projects/storytime"
-                        className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
-                        onClick={handleLinkClick}
-                      >
-                        <span className="font-medium">StoryTime</span>
-                        <span className="text-xs text-muted-foreground mt-1">
-                          Coming soon
-                        </span>
-                      </Link>
-                      <Link
-                        href="/projects/brief-buddy"
-                        className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
-                        onClick={handleLinkClick}
-                      >
-                        <span className="font-medium">BriefBuddy</span>
-                        <span className="text-xs text-muted-foreground mt-1">
-                          Note-taking app
-                        </span>
-                      </Link>
-                      <Link
-                        href="/projects/trace-it"
-                        className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
-                        onClick={handleLinkClick}
-                      >
-                        <span className="font-medium">TraceIt</span>
-                        <span className="text-xs text-muted-foreground mt-1">
-                          Food traceability
-                        </span>
-                      </Link>
-                    </div>
+                      {projectsExpanded ? (
+                        <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                      ) : (
+                        <ChevronRight className="h-5 w-5 text-muted-foreground" />
+                      )}
+                    </button>
+
+                    {projectsExpanded && (
+                      <div className="ml-14 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <Link
+                          href="/projects"
+                          className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
+                          onClick={handleLinkClick}
+                        >
+                          <span className="font-medium">All Projects</span>
+                          <span className="text-xs text-muted-foreground mt-1">
+                            View portfolio
+                          </span>
+                        </Link>
+                        <Link
+                          href="/projects/tfi-group"
+                          className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
+                          onClick={handleLinkClick}
+                        >
+                          <span className="font-medium">TFI Group</span>
+                          <span className="text-xs text-muted-foreground mt-1">
+                            AI platform
+                          </span>
+                        </Link>
+                        <Link
+                          href="/projects/daily-vocab"
+                          className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
+                          onClick={handleLinkClick}
+                        >
+                          <span className="font-medium">DailyVocab</span>
+                          <span className="text-xs text-muted-foreground mt-1">
+                            Vocabulary app
+                          </span>
+                        </Link>
+                        <Link
+                          href="/projects/storytime"
+                          className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
+                          onClick={handleLinkClick}
+                        >
+                          <span className="font-medium">StoryTime</span>
+                          <span className="text-xs text-muted-foreground mt-1">
+                            Coming soon
+                          </span>
+                        </Link>
+                        <Link
+                          href="/projects/brief-buddy"
+                          className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
+                          onClick={handleLinkClick}
+                        >
+                          <span className="font-medium">BriefBuddy</span>
+                          <span className="text-xs text-muted-foreground mt-1">
+                            Note-taking app
+                          </span>
+                        </Link>
+                        <Link
+                          href="/projects/trace-it"
+                          className="p-3 rounded-lg border border-border/30 hover:border-primary/30 bg-background/50 hover:bg-primary/5 transition-colors flex flex-col items-center sm:items-start text-center sm:text-left"
+                          onClick={handleLinkClick}
+                        >
+                          <span className="font-medium">TraceIt</span>
+                          <span className="text-xs text-muted-foreground mt-1">
+                            Food traceability
+                          </span>
+                        </Link>
+                      </div>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">

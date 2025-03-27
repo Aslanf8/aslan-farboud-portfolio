@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Providers } from "./providers";
 // import { constructMetadata } from "@/lib/metadata";
 import { Toaster } from "@/components/ui/sonner";
+
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
