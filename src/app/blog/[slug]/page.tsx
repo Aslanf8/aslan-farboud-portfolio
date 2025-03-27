@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getAllSlugs, getPostBySlug, getAllPosts } from "@/lib/blog";
 import { createBlogMetadata } from "@/lib/metadata";
+import { formatBlogContent } from "@/lib/utils";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
 import { Clock, CalendarDays, User, ArrowLeft, ArrowRight } from "lucide-react";
@@ -95,6 +96,9 @@ export default async function BlogPost({ params }) {
 
   // Calculate reading time with caching
   const readingTime = await getReadingTime(post.content);
+
+  // Format the blog content with our custom formatter
+  const formattedContent = formatBlogContent(post.content);
 
   // Format date for schema and article tag
   const formattedPublishDate = new Date(post.published_at).toISOString();
@@ -247,9 +251,10 @@ export default async function BlogPost({ params }) {
             </div>
           )}
 
+          {/* Blog Content */}
           <div
             className="prose-headings:font-bold prose-headings:tracking-tight prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg sm:prose-img:rounded-xl prose-img:shadow-md text-sm sm:text-base md:text-lg"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: formattedContent }}
             itemProp="articleBody"
           />
 
