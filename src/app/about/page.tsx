@@ -2,6 +2,8 @@ import * as React from "react";
 import { MainNav } from "@/components/main-nav";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { DownloadIcon } from "@radix-ui/react-icons";
 
 export default function AboutPage() {
   return (
@@ -23,6 +25,30 @@ export default function AboutPage() {
                 business problems through AI, web development, and data
                 analytics.
               </p>
+            </div>
+
+            <div className="flex flex-col items-center p-6 border rounded-lg bg-muted/30 space-y-3">
+              <div className="text-center space-y-2">
+                <h3 className="text-lg sm:text-xl font-semibold">
+                  Want the full details?
+                </h3>
+                <p className="text-sm sm:text-base text-muted-foreground">
+                  Download my complete resume for a comprehensive overview of my
+                  skills and experience.
+                </p>
+              </div>
+              <Button className="group" variant="default">
+                <DownloadIcon className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+                <a
+                  href="https://luzvrehlgxzdctsldcgw.supabase.co/storage/v1/object/public/blog-images//resume-march.pdf"
+                  download
+                  className="no-underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Download Resume
+                </a>
+              </Button>
             </div>
 
             <div className="space-y-4 sm:space-y-6">
