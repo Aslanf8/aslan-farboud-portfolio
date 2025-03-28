@@ -19,41 +19,10 @@ export default function AboutPage() {
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
                 Business and Computer Science student at Simon Fraser University
                 with a passion for building innovative software solutions.
+                Focused on applying technical expertise to solve real-world
+                business problems through AI, web development, and data
+                analytics.
               </p>
-            </div>
-
-            <div className="space-y-4 sm:space-y-6">
-              <h2 className="text-xl sm:text-2xl font-bold">Education</h2>
-              <div className="rounded-lg border p-4 sm:p-6">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold">
-                      Simon Fraser University
-                    </h3>
-                    <p className="text-sm sm:text-base text-muted-foreground">
-                      Dual Major in Business and Computer Science
-                    </p>
-                  </div>
-                  <Badge className="mt-2 md:mt-0 text-xs sm:text-sm self-start md:self-center">
-                    1 year left
-                  </Badge>
-                </div>
-                <div className="mt-3 sm:mt-4">
-                  <p className="text-sm sm:text-base font-medium">
-                    Achievements:
-                  </p>
-                  <ul className="ml-4 sm:ml-6 mt-2 list-disc text-sm sm:text-base text-muted-foreground">
-                    <li>
-                      Robertson O Award - $5,000 for being a well-rounded
-                      individual
-                    </li>
-                    <li>
-                      Waterloo Conrad School of Business Entrepreneurship Award
-                      - $5,000
-                    </li>
-                  </ul>
-                </div>
-              </div>
             </div>
 
             <div className="space-y-4 sm:space-y-6">
@@ -68,7 +37,7 @@ export default function AboutPage() {
                       TFI Group
                     </h3>
                     <p className="text-sm sm:text-base text-muted-foreground">
-                      AI Solutions Architecture
+                      AI Solutions Architecture Lead
                     </p>
                   </div>
                   <Badge className="mt-2 md:mt-0 text-xs sm:text-sm self-start md:self-center">
@@ -82,7 +51,9 @@ export default function AboutPage() {
                     streamlining tax consultations and document management
                     across service lines. Reduced project costs from hundreds of
                     pounds to under £5 using AWS (Lambda, S3, SNS, Textract,
-                    ECR), Supabase, Pinecone, and OpenAI.
+                    ECR), Supabase, Pinecone, and OpenAI. Implemented RAG
+                    (Retrieval Augmented Generation) and fine-tuned models to
+                    optimize performance for specialized tax domains.
                   </p>
                 </div>
               </div>
@@ -108,7 +79,10 @@ export default function AboutPage() {
                     Single-handedly developed the end-to-end solution using
                     JavaScript, React, Node.js, Python, and Expo for app
                     development/deployment, with Apple Connect (TestFlight,
-                    Transporter) for distribution.
+                    Transporter) for distribution. Implemented user
+                    authentication, real-time synchronization, and optimized
+                    prompting techniques to deliver accurate summarization
+                    capabilities.
                   </p>
                 </div>
               </div>
@@ -120,7 +94,7 @@ export default function AboutPage() {
                       West Coast Kitchen
                     </h3>
                     <p className="text-sm sm:text-base text-muted-foreground">
-                      Software Solutions Architect
+                      Software Solutions Architect & Lead Developer
                     </p>
                   </div>
                   <Badge className="mt-2 md:mt-0 text-xs sm:text-sm self-start md:self-center">
@@ -133,7 +107,11 @@ export default function AboutPage() {
                     for West Coast Kitchen, ensuring CFIA compliance by tracking
                     ingredients, production, and sales across the food
                     lifecycle. Built a scalable solution using Next.js 15, React
-                    19, TypeScript, Tailwind CSS, and Tanstack React Query.
+                    19, TypeScript, Tailwind CSS, and Tanstack React Query and
+                    AWS. Implemented barcode generation, detailed audit logging,
+                    and inventory management features that reduced manual
+                    tracking time by over 70% while ensuring regulatory
+                    compliance.
                   </p>
                 </div>
               </div>
@@ -145,11 +123,11 @@ export default function AboutPage() {
                       University of Victoria (UVIC)
                     </h3>
                     <p className="text-sm sm:text-base text-muted-foreground">
-                      TA & Research Assistant for MBA class
+                      TA & Research Assistant for MBA Program
                     </p>
                   </div>
                   <Badge className="mt-2 md:mt-0 text-xs sm:text-sm self-start md:self-center">
-                    2022
+                    Feb 2024 - May 2024
                   </Badge>
                 </div>
                 <div className="mt-3 sm:mt-4 text-sm sm:text-base text-muted-foreground">
@@ -159,11 +137,18 @@ export default function AboutPage() {
                     vector embeddings, and Artificial Neural Networks (ANNs)—to
                     simplify advanced computer science concepts for MBA
                     students, making technical material accessible and
-                    actionable.
+                    actionable. Created interactive Jupyter notebooks and
+                    visualization tools that transformed complex algorithms into
+                    practical business intelligence applications. Received
+                    exceptional feedback for bridging the gap between technical
+                    concepts and business applications.
                   </p>
                 </div>
               </div>
+            </div>
 
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-xl sm:text-2xl font-bold">Internships</h2>
               <div className="rounded-lg border p-4 sm:p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                   <div>
@@ -171,7 +156,7 @@ export default function AboutPage() {
                       Farm Credit Canada
                     </h3>
                     <p className="text-sm sm:text-base text-muted-foreground">
-                      Data Analysis
+                      Data Analysis Intern
                     </p>
                   </div>
                   <Badge className="mt-2 md:mt-0 text-xs sm:text-sm self-start md:self-center">
@@ -188,6 +173,72 @@ export default function AboutPage() {
                     actionable reports that supported upper management&apos;s
                     strategic decisions.
                   </p>
+                </div>
+              </div>
+
+              <div className="rounded-lg border p-4 sm:p-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold">
+                      Blossom Social Media
+                    </h3>
+                    <p className="text-sm sm:text-base text-muted-foreground">
+                      Content Strategist Intern
+                    </p>
+                  </div>
+                  <Badge className="mt-2 md:mt-0 text-xs sm:text-sm self-start md:self-center">
+                    January 2022 - May 2022
+                  </Badge>
+                </div>
+                <div className="mt-3 sm:mt-4 text-sm sm:text-base text-muted-foreground">
+                  <p>
+                    Developed a data-driven project that strategically processed
+                    large volumes of word-hashtags from leading investment
+                    influencers on TikTok, enabling the extraction of popular
+                    trends for implementation in marketing campaigns. Analyzed
+                    social media performance metrics to identify engagement
+                    patterns and optimize content scheduling. Contributed to
+                    guerrilla marketing initiatives by creating viral-oriented
+                    content strategies that increased brand visibility at
+                    minimal cost.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-xl sm:text-2xl font-bold">Education</h2>
+              <div className="rounded-lg border p-4 sm:p-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold">
+                      Simon Fraser University
+                    </h3>
+                    <p className="text-sm sm:text-base text-muted-foreground">
+                      Bachelor of Business Administration (BBA) with focus in
+                      Management Information Systems
+                    </p>
+                  </div>
+                  <Badge className="mt-2 md:mt-0 text-xs sm:text-sm self-start md:self-center">
+                    1 year left
+                  </Badge>
+                </div>
+                <div className="mt-3 sm:mt-4">
+                  <p className="text-sm sm:text-base font-medium">
+                    Achievements:
+                  </p>
+                  <ul className="ml-4 sm:ml-6 mt-2 list-disc text-sm sm:text-base text-muted-foreground">
+                    <li>
+                      Robertson O Award - $5,000 for being a well-rounded
+                      individual with demonstrated excellence in academics,
+                      leadership, and community involvement
+                    </li>
+                    <li>
+                      Waterloo Conrad School of Business Entrepreneurship Award
+                      - $5,000 for innovative business concept development and
+                      entrepreneurial potential
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
