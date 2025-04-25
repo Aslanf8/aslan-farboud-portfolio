@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
-  CardDescription,
+  // CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -26,6 +26,8 @@ const skillCategories = [
       "Expo",
       "HTML/CSS",
       "Responsive Design",
+      "State Management (Redux, Zustand)",
+      "Material UI",
     ],
   },
   {
@@ -34,6 +36,7 @@ const skillCategories = [
     skills: [
       "Node.js",
       "Python",
+      "Flask",
       "Supabase",
       "PostgreSQL",
       "REST APIs",
@@ -52,10 +55,16 @@ const skillCategories = [
       "OpenAI (GPT, Embedding, Whisper, TTS)",
       "LLM Fine-tuning",
       "Vector Databases",
+      "RAG",
       "Pinecone",
       "trigger.dev",
       "deepgram",
       "Machine Learning",
+      "TensorFlow",
+      "PyTorch",
+      "Pandas/NumPy",
+      "LangChain",
+      "Hugging Face Transformers",
       "Natural Language Processing",
       "Text-to-Speech",
       "Speech-to-Text",
@@ -137,7 +146,7 @@ export function SkillsSection() {
                     <CardTitle className="text-lg sm:text-xl">
                       {category.name} Skills
                     </CardTitle>
-                    <CardDescription className="text-sm sm:text-base">
+                    {/* <CardDescription className="text-sm sm:text-base">
                       {category.id === "frontend" &&
                         "Building modern, responsive user interfaces"}
                       {category.id === "backend" &&
@@ -148,7 +157,7 @@ export function SkillsSection() {
                         "Deploying and managing cloud infrastructure"}
                       {category.id === "mobile" &&
                         "Creating cross-platform mobile experiences"}
-                    </CardDescription>
+                    </CardDescription> */}
                   </CardHeader>
                   <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
