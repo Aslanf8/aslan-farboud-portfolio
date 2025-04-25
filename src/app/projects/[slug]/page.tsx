@@ -110,7 +110,7 @@ export const projects = [
     id: "storytime",
     title: "StoryTime",
     description:
-      "A social platform for creating (using LLMs) and sharing stories with features for story creation, friend connections, and personalized feeds. Coming soon - pending Grok 3 API release.",
+      "A social platform for creating (using LLMs) and sharing stories with features for story creation, friend connections, and personalized feeds.",
     longDescription: `
       Developed StoryTime, a comprehensive mobile story-sharing application built with React Native (Expo) and TypeScript. 
       Created a robust social platform featuring AI-assisted story generation, audio narration, and personalized content discovery.
@@ -118,9 +118,6 @@ export const projects = [
       Implemented a sophisticated audio system with chapter-based playback, background audio support, and progress tracking. 
       Integrated a friend system with request management and notifications. Built a custom theme system with dark/light modes 
       and designed a library of reusable UI components. Used Supabase for authentication, database, and real-time features.
-      
-      Note: StoryTime is currently in development, with release pending the availability of the Grok 3 API, which testing has shown 
-      to be superior for AI story generation capabilities.
     `,
     image: "/storytime-logo.png",
     tags: [
@@ -152,8 +149,9 @@ export const projects = [
       "React Native Reanimated",
       "React Native Gesture Handler",
     ],
-    live: "",
+    live: "https://storytime-ruby.vercel.app",
     github: "",
+    appStore: "",
     comingSoon: "Releasing after Grok 3 API availability",
   },
   {

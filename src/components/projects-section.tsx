@@ -66,7 +66,7 @@ const projects = [
       "trigger.dev",
     ],
     link: "/projects/storytime",
-    live: "",
+    live: "https://storytime-ruby.vercel.app",
     github: "",
     comingSoon: true,
   },
