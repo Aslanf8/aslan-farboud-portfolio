@@ -60,6 +60,31 @@ export default function AboutPage() {
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold">
+                      Zafin
+                    </h3>
+                    <p className="text-sm sm:text-base text-muted-foreground">
+                      AI Engineer (Incoming)
+                    </p>
+                  </div>
+                  <Badge className="mt-2 md:mt-0 text-xs sm:text-sm self-start md:self-center">
+                    May 2025 - August 2025
+                  </Badge>
+                </div>
+                <div className="mt-3 sm:mt-4 text-sm sm:text-base text-muted-foreground">
+                  <p>
+                    Excited to join Zafin&apos;s AI team! While the specific
+                    projects are yet to be determined, I will be contributing to
+                    AI initiatives under the guidance of the VP of AI and
+                    alongside a dedicated team of AI engineers. Looking forward
+                    to applying my skills in a new environment.
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-lg border p-4 sm:p-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold">
                       TFI Group
                     </h3>
                     <p className="text-sm sm:text-base text-muted-foreground">
@@ -91,7 +116,7 @@ export default function AboutPage() {
                       BriefBuddy
                     </h3>
                     <p className="text-sm sm:text-base text-muted-foreground">
-                      Founder & Full-Stack Developer
+                      Creator
                     </p>
                   </div>
                   <Badge className="mt-2 md:mt-0 text-xs sm:text-sm self-start md:self-center">
