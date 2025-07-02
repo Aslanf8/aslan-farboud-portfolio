@@ -97,14 +97,17 @@ export default function AboutPage() {
                 </div>
                 <div className="mt-3 sm:mt-4 text-sm sm:text-base text-muted-foreground">
                   <p>
-                    Led the development of an AI-powered platform for R&D Tax
-                    Relief, Land Remediation, and general AI agent workflows,
-                    streamlining tax consultations and document management
-                    across service lines. Reduced project costs from hundreds of
-                    pounds to under £5 using AWS (Lambda, S3, SNS, Textract,
-                    ECR), Supabase, Pinecone, and OpenAI. Implemented RAG
-                    (Retrieval Augmented Generation) and fine-tuned models to
-                    optimize performance for specialized tax domains.
+                    Architected and developed a comprehensive enterprise AI
+                    platform for TFI Group, a leading tax consultancy
+                    specializing in Housing Development, Land Remediation
+                    Relief, R&D tax credits, and Capital Allowances. Built
+                    multiple sophisticated AI systems including Tina AI
+                    (conversational AI with multi-model support), Dan AI
+                    (voice-enabled virtual tax consultant), and advanced
+                    document processing pipelines with parallel AI analysis
+                    workflows. Implemented enterprise-grade features including
+                    vector search with RAG, schema-driven AI configuration, MFA
+                    authentication, and cost tracking systems.
                   </p>
                 </div>
               </div>

@@ -15,52 +15,60 @@ export const projects = [
     id: "tfi-group",
     title: "TFI Group AI Platform",
     description:
-      "AI-powered platform for R&D Tax Relief, Land Remediation, and general AI agent workflows, streamlining tax consultations and document management across service lines.",
+      "AI-powered platform for tax consultancy featuring multi-modal AI assistants, advanced document processing pipelines, and sophisticated LLM orchestration. Built comprehensive AI workflows including Tina AI (conversational AI with vector search), Dan AI (voice-enabled tax consultant), automated document analysis with parallel processing, and schema-driven AI configuration systems.",
     longDescription: `
-      Led the development of an AI-powered platform for R&D Tax Relief, Land Remediation, and general AI agent workflows, 
-      streamlining tax consultations and document management across service lines. Reduced project costs from hundreds 
-      of pounds to under £5 using AWS (Lambda, S3, SNS, Textract, ECR), Supabase, Pinecone, and OpenAI (GPT4o, 
-      Text-to-Speech, Speech-to-Text).
-      
-      Built with Next.js 15+, TypeScript, Tailwind CSS, and React Query, featuring MFA, role-based access, and streaming APIs.
+      Architected and developed a comprehensive enterprise AI platform for TFI Group, a leading tax consultancy specializing in Housing Development, Land Remediation Relief, R&D tax credits, and Capital Allowances in the UK. The platform demonstrates up-to-date AI application development with multiple sophisticated AI systems working in coordination.
+
+      Built Tina AI Assistant - an advanced conversational AI with multi-model support, featuring intelligent file referencing using @filename syntax, real-time web search integration, and dual-scope vector stores for personal and organizational knowledge. Implemented streaming responses, conversation persistence, and context-aware personalization.
+
+      Developed a beta Dan AI Consultation System - a specialized voice-enabled virtual tax consultant with real-time speech-to-text/text-to-speech capabilities, domain-specific persona optimization, and structured consultation workflows mimicking professional tax advisory sessions.
+
+      Created sophisticated document processing pipelines with multi-stage AI analysis workflows including Python-based PDF extraction, Deepgram audio/video transcription with speaker diarization, intelligent content chunking, parallel AI processing across multiple models, reference validation with fact-checking, and automated report generation with Excel output.
+
+      Implemented advanced schema management framework for dynamic AI behavior configuration, including customizable question sets, LLM parameter control, writing style rules, version control with rollback capabilities, and training example management for consistent AI outputs.
+
+      The platform showcases enterprise-grade features including MFA with TOTP-based 2FA, domain-restricted authentication, role-based access control, hierarchical file organization with vector search, cost optimization with token usage tracking, and production-ready error handling with fallback strategies.
     `,
     image: "/tfi-logo.svg",
     tags: [
       "Next.js",
       "TypeScript",
-      "Tailwind CSS",
-      "shadcn/ui",
-      "radix",
-      "AWS",
+      "Multi-Modal AI",
+      "LLM Orchestration",
+      "Vector Search",
+      "RAG",
+      "OpenAI GPT-4o/O1",
+      "Voice AI",
+      "Document Processing",
+      "AI Workflows",
+      "Enterprise Auth",
       "Supabase",
-      "OpenAI",
-      "trigger.dev",
-      "deepgram",
-      "LLM",
-      "TTS",
     ],
     features: [
-      "AI-powered document analysis",
-      "Role-based access control",
-      "Multi-factor authentication",
-      "Real-time streaming APIs",
-      "Document management system",
+      "Tina AI: Multi-model conversational AI with vector search and file referencing",
+      "Dan AI: Voice-enabled virtual tax consultant with domain expertise",
+      "Advanced document processing with parallel AI analysis workflows",
+      "Schema-driven AI configuration with dynamic behavior management",
+      "Enterprise authentication with MFA and role-based access control",
+      "Real-time streaming AI responses with cost optimization",
+      "Sophisticated vector search with dual-scope knowledge bases",
+      "Multi-stage document analysis with reference validation",
     ],
     tech: [
       "Next.js 15+",
       "TypeScript",
-      "Tailwind CSS",
-      "React Query",
-      "AWS Lambda",
-      "AWS S3",
-      "AWS SNS",
-      "AWS Textract",
-      "AWS ECR",
-      "Supabase",
-      "Pinecone",
-      "OpenAI GPT-4o",
-      "OpenAI Text-to-Speech",
-      "OpenAI Speech-to-Text",
+      "OpenAI GPT-4o, O1, O3-mini",
+      "Gemini, Grok, Claude",
+      "Vector Stores & RAG",
+      "Deepgram Speech AI",
+      "Python Document Processing",
+      "Trigger.dev Workflows",
+      "Supabase (Auth, DB, Storage)",
+      "Multi-Factor Authentication",
+      "Real-time Streaming APIs",
+      "Cost Optimization Systems",
+      "Reference Validation AI",
+      "Schema Management Framework",
     ],
     live: "https://example.com/tfi",
     github: "",
