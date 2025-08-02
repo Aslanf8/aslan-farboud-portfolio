@@ -1,0 +1,3 @@
+# PDF Text Extractor Requirements
+# PyMuPDF is a popular and reliable PDF processing library
+PyMuPDF==1.23.26 

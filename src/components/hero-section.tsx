@@ -37,10 +37,10 @@ export function HeroSection() {
         <div className="mt-12 sm:mt-16 md:mt-20 lg:mt-0 lg:flex-shrink-0 flex justify-center">
           <div className="relative h-[250px] w-[250px] sm:h-[300px] sm:w-[300px] md:h-[350px] md:w-[350px] lg:h-[450px] lg:w-[450px] rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden">
             <Image
-              src="/profile_sharpened.jpeg"
+              src="/ss.png"
               alt="Aslan Farboud"
               fill
-              className="object-cover"
+              className="object-cover object-top"
               priority
               sizes="(max-width: 640px) 250px, (max-width: 768px) 300px, (max-width: 1024px) 350px, 450px"
             />
