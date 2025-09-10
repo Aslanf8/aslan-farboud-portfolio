@@ -19,11 +19,10 @@ export default function AboutPage() {
                 About Me
               </h1>
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
-                Business and Computer Science student at Simon Fraser University
-                with a passion for building innovative software solutions.
-                Focused on applying technical expertise to solve real-world
-                business problems through AI, web development, and data
-                analytics.
+                Student at Simon Fraser University with a passion for building
+                innovative software solutions. Focused on applying technical
+                expertise to solve real-world business problems through AI, web
+                development, and data analytics.
               </p>
             </div>
 
@@ -63,20 +62,21 @@ export default function AboutPage() {
                       Zafin
                     </h3>
                     <p className="text-sm sm:text-base text-muted-foreground">
-                      AI Engineer (Incoming)
+                      AI Engineer
                     </p>
                   </div>
                   <Badge className="mt-2 md:mt-0 text-xs sm:text-sm self-start md:self-center">
-                    May 2025 - August 2025
+                    May 2025 - August 2025 (Remote)
                   </Badge>
                 </div>
                 <div className="mt-3 sm:mt-4 text-sm sm:text-base text-muted-foreground">
                   <p>
-                    Excited to join Zafin&apos;s AI team! While the specific
-                    projects are yet to be determined, I will be contributing to
-                    AI initiatives under the guidance of the VP of AI and
-                    alongside a dedicated team of AI engineers. Looking forward
-                    to applying my skills in a new environment.
+                    Completed a full-time in-person role at Zafin working with
+                    their AI team under the guidance of the VP of AI alongside a
+                    dedicated team of AI engineers. Contributed to AI
+                    initiatives and applied my LLM expertise in an enterprise
+                    banking technology environment. Now continuing remote work
+                    with the team.
                   </p>
                 </div>
               </div>

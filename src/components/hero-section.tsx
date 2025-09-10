@@ -17,11 +17,12 @@ export function HeroSection() {
             </span>
           </h1>
           <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 dark:text-gray-300">
-            I build software that prioritizes working solutions over complexity,
-            whether it&apos;s web applications, AI-driven systems, or backend
-            infrastructure. I love exploring new technologies, understanding how
-            they evolve, and applying them in ways that make my work and
-            projects more effective and adaptable.
+            I love building and creating things—software has become my outlet
+            for that passion. Since November 2022, I&apos;ve specialized in
+            Large Language Models, developing AI-driven applications that solve
+            real problems: from mobile apps that enhance learning to platforms
+            that streamline business processes. I focus on functionality over
+            complexity, building tools that actually work.
           </p>
           <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
             <Button asChild className="w-full sm:w-auto">
