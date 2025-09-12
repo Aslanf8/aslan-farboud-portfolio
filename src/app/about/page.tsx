@@ -39,7 +39,7 @@ export default function AboutPage() {
               <Button className="group" variant="default">
                 <DownloadIcon className="mr-2 h-4 w-4 group-hover:animate-bounce" />
                 <a
-                  href="https://luzvrehlgxzdctsldcgw.supabase.co/storage/v1/object/public/blog-images//resume-march.pdf"
+                  href="https://luzvrehlgxzdctsldcgw.supabase.co/storage/v1/object/public/blog-images/resume-sep.pdf"
                   download
                   className="no-underline"
                   target="_blank"
