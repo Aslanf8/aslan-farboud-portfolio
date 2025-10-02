@@ -181,6 +181,39 @@
 /* Smooth scroll with offset for fixed header */
 html {
   scroll-padding-top: 80px;
+  scroll-behavior: smooth;
+}
+
+/* Performance optimizations for animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* GPU acceleration for animated elements */
+.animate-gradient-x,
+.animate-float,
+.animate-pulse-glow {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce animation complexity on mobile */
+@media (max-width: 1024px) {
+  .animate-gradient-x {
+    animation: none;
+  }
+  
+  .animate-float {
+    animation-duration: 4s;
+  }
 }
 
 /* Custom scrollbar */

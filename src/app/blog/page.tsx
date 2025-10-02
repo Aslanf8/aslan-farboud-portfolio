@@ -65,7 +65,11 @@ const getReadingTimes = unstable_cache(
 );
 
 // Directly fetch and prepare posts in the component without using getPaginatedPosts
-export default async function BlogPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
   console.log("BlogPage - Component starting to render");
 
   const params = await searchParams;

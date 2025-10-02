@@ -10,7 +10,11 @@ import { MainNav } from "@/components/main-nav";
 import { Footer } from "@/components/footer";
 import { projects } from "@/data/projects";
 
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const project = projects.find((p) => p.id === slug);
 

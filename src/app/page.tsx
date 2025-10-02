@@ -120,7 +120,7 @@ export default function Home() {
       />
 
       <div className="flex min-h-screen flex-col">
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 transition-all duration-300">
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm lg:backdrop-blur-md supports-[backdrop-filter]:bg-background/60 transition-all duration-300">
           <MainNav />
         </header>
         <main className="flex-1">

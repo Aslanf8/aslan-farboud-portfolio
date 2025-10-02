@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { Sparkles, Code2, Rocket, Zap, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const floatingAnimation = {
@@ -29,18 +29,37 @@ const skills = [
 
 export function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 20 - 10,
-        y: (e.clientY / window.innerHeight) * 20 - 10,
-      });
+    // Check if device is mobile/tablet
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024 || "ontouchstart" in window);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    // Only track mouse on desktop devices
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isMobile) {
+        setMousePosition({
+          x: (e.clientX / window.innerWidth) * 20 - 10,
+          y: (e.clientY / window.innerHeight) * 20 - 10,
+        });
+      }
+    };
+
+    if (!isMobile) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, [isMobile]);
 
   return (
     <div className="relative overflow-hidden">
@@ -49,28 +68,32 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100 via-transparent to-transparent dark:from-blue-950/30 opacity-50" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-purple-100 via-transparent to-transparent dark:from-purple-950/30 opacity-50" />
 
-        {/* Animated grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+        {/* Animated grid pattern - simplified on mobile */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] lg:block hidden" />
 
-        {/* Floating orbs */}
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-400/20 dark:bg-blue-600/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            x: mousePosition.x,
-            y: mousePosition.y,
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            x: -mousePosition.x,
-            y: -mousePosition.y,
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
+        {/* Floating orbs - only on desktop and when not reducing motion */}
+        {!isMobile && !shouldReduceMotion && (
+          <>
+            <motion.div
+              className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-400/20 dark:bg-blue-600/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                x: mousePosition.x,
+                y: mousePosition.y,
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-400/20 dark:bg-purple-600/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1.2, 1, 1.2],
+                x: -mousePosition.x,
+                y: -mousePosition.y,
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </>
+        )}
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-20 md:py-28 lg:flex lg:items-start lg:gap-x-12 lg:px-8 lg:py-40">
@@ -89,22 +112,30 @@ export function HeroSection() {
 
           {/* Main headline with animated gradient */}
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={
+              !shouldReduceMotion ? { opacity: 0, y: 20 } : { opacity: 1 }
+            }
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.5, delay: 0.1 }}
             className="max-w-lg text-4xl sm:text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl"
           >
             Building{" "}
             <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient-x">
+              <span
+                className={`bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent ${
+                  !isMobile && !shouldReduceMotion ? "animate-gradient-x" : ""
+                }`}
+              >
                 AI-Powered
               </span>
-              <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              />
+              {!shouldReduceMotion && (
+                <motion.div
+                  className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                />
+              )}
             </span>
             <br />
             Solutions That Matter
@@ -222,14 +253,23 @@ export function HeroSection() {
 
               {/* Floating badge */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={
+                  !shouldReduceMotion ? { opacity: 0, y: 20 } : { opacity: 1 }
+                }
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1 }}
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border border-white/20 dark:border-gray-800/50 shadow-xl"
+                transition={{
+                  duration: shouldReduceMotion ? 0 : 0.5,
+                  delay: 1,
+                }}
+                className={`absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/80 dark:bg-gray-900/80 border border-white/20 dark:border-gray-800/50 shadow-xl ${
+                  !isMobile ? "backdrop-blur-md" : "backdrop-blur-sm"
+                }`}
               >
                 <div className="flex items-center gap-2">
                   <div className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    {!shouldReduceMotion && (
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    )}
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                   </div>
                   <span className="text-sm font-medium">
