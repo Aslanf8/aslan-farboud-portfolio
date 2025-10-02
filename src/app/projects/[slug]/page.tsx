@@ -10,8 +10,9 @@ import { MainNav } from "@/components/main-nav";
 import { Footer } from "@/components/footer";
 import { projects } from "@/data/projects";
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = projects.find((p) => p.id === params.slug);
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = projects.find((p) => p.id === slug);
 
   if (!project) {
     notFound();

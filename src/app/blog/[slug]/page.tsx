@@ -13,8 +13,9 @@ import { unstable_cache } from "next/cache";
 import Image from "next/image";
 
 // Generate metadata dynamically
-export async function generateMetadata({ params }) {
-  const post = await getPostBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }) {
     title: post.title,
     description:
       post.description || `Read ${post.title} on Aslan Farboud's blog`,
-    slug: params.slug,
+    slug: slug,
     image: post.featured_image,
     publishedTime: post.published_at,
     authors: [post.author || "Aslan Farboud"],
@@ -73,8 +74,9 @@ const getRelatedPosts = unstable_cache(
   { revalidate: 3600 }
 );
 
-export default async function BlogPost({ params }) {
-  const post = await getPostBySlug(params.slug);
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -130,7 +132,7 @@ export default async function BlogPost({ params }) {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://aslanfarboud.com/blog/${params.slug}`,
+      "@id": `https://aslanfarboud.com/blog/${slug}`,
     },
   };
 
