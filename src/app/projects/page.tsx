@@ -18,9 +18,7 @@ import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { motion } from "framer-motion";
-
-// Import project data from the dynamic route
-import { projects } from "./[slug]/page";
+import { projects } from "@/data/projects";
 
 export default function ProjectsPage() {
   return (
