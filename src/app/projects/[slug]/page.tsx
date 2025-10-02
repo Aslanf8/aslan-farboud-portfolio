@@ -260,17 +260,24 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-background to-background/80">
-      <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 transition-all duration-300">
         <MainNav />
       </header>
-      <main className="flex-1">
+      <main className="flex-1 relative">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-20 right-10 w-96 h-96 bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-400/10 dark:bg-pink-600/10 rounded-full blur-3xl" />
+        </div>
+
         <div className="container max-w-4xl py-8 sm:py-12 md:py-16 lg:py-24 px-4 mx-auto">
           <div className="flex items-center space-x-2 mb-6 sm:mb-12">
             <Button
               variant="ghost"
               size="sm"
               asChild
-              className="group transition-all duration-200 hover:translate-x-[-2px] text-xs sm:text-sm"
+              className="group transition-all duration-200 hover:translate-x-[-2px] text-xs sm:text-sm hover:bg-blue-50 dark:hover:bg-blue-950/30 hover:text-blue-600 dark:hover:text-blue-400"
             >
               <Link href="/projects">
                 <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 group-hover:transform group-hover:translate-x-[-2px] transition-transform" />
@@ -281,9 +288,9 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
           {/* Project Header with Image */}
           <div className="flex flex-col items-center text-center mb-8 sm:mb-16">
-            <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[250px] h-[180px] sm:h-[220px] md:h-[250px] mb-6 sm:mb-8 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-primary/20 shadow-lg transition-transform duration-500 hover:scale-105">
+            <div className="w-full max-w-[180px] sm:max-w-[220px] md:max-w-[250px] h-[180px] sm:h-[220px] md:h-[250px] mb-6 sm:mb-8 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-border/50 hover:border-border shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 bg-white/5 dark:bg-gray-900/50 backdrop-blur-sm">
               {project.image ? (
-                <div className="relative h-full w-full flex items-center justify-center p-4 bg-white/5 backdrop-blur-sm">
+                <div className="relative h-full w-full flex items-center justify-center p-4">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -294,7 +301,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   />
                 </div>
               ) : (
-                <div className="flex h-full w-full items-center justify-center bg-slate-200/50 dark:bg-slate-800/50">
+                <div className="flex h-full w-full items-center justify-center">
                   <span className="text-lg sm:text-xl font-medium">
                     {project.title}
                   </span>
@@ -302,7 +309,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               )}
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-3 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               {project.title}
             </h1>
 
@@ -311,7 +318,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 <Badge
                   key={tag}
                   variant="secondary"
-                  className="px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm"
+                  className="px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
                 >
                   {tag}
                 </Badge>
@@ -319,7 +326,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               {project.tags.length > 8 && (
                 <Badge
                   variant="outline"
-                  className="px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm"
+                  className="px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm hover:border-purple-500 dark:hover:border-purple-400 transition-colors"
                 >
                   +{project.tags.length - 8} more
                 </Badge>
@@ -331,7 +338,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </p>
 
             {isClientProject && (
-              <div className="mt-4 px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-yellow-500/10 border border-yellow-500/30 text-yellow-600 dark:text-yellow-400 max-w-2xl">
+              <div className="mt-4 px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-yellow-500/10 border-2 border-yellow-500/30 hover:border-yellow-500/50 text-yellow-600 dark:text-yellow-400 max-w-2xl shadow-lg hover:shadow-yellow-500/20 transition-all duration-300">
                 <p className="text-xs sm:text-sm font-medium">
                   This is a proprietary client project. Live demo access is
                   restricted due to confidentiality agreements.
@@ -343,17 +350,19 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           {/* Project Details */}
           <div className="grid grid-cols-1 gap-6 sm:gap-12">
             <div className="prose prose-sm sm:prose-base md:prose-lg dark:prose-invert max-w-none">
-              <div className="mb-6 sm:mb-12 p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm">
+              <div className="mb-6 sm:mb-12 p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border-2 border-border/50 hover:border-blue-500/30 dark:hover:border-blue-400/30 shadow-xl hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-400/10 transition-all duration-300">
                 <p className="whitespace-pre-line text-sm sm:text-base md:text-lg leading-relaxed">
                   {project.longDescription}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 mb-6 sm:mb-12">
-                <div className="p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/30">
+                <div className="p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border-2 border-border/50 hover:border-purple-500/50 dark:hover:border-purple-400/50 shadow-xl hover:shadow-2xl hover:shadow-purple-500/10 dark:hover:shadow-purple-400/10 transition-all duration-300 hover:-translate-y-1">
                   <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
-                    <span className="inline-block w-1.5 sm:w-2 h-6 sm:h-8 bg-primary mr-2 sm:mr-3 rounded-full"></span>
-                    Features
+                    <span className="inline-block w-1.5 sm:w-2 h-6 sm:h-8 bg-gradient-to-b from-purple-600 to-pink-600 mr-2 sm:mr-3 rounded-full"></span>
+                    <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                      Features
+                    </span>
                   </h2>
                   <ul className="space-y-2 sm:space-y-3 list-none pl-0">
                     {project.features.map((feature) => (
@@ -367,17 +376,19 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   </ul>
                 </div>
 
-                <div className="p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 shadow-sm transition-all duration-300 hover:shadow-md hover:border-primary/30">
+                <div className="p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm border-2 border-border/50 hover:border-blue-500/50 dark:hover:border-blue-400/50 shadow-xl hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-400/10 transition-all duration-300 hover:-translate-y-1">
                   <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 flex items-center">
-                    <span className="inline-block w-1.5 sm:w-2 h-6 sm:h-8 bg-primary mr-2 sm:mr-3 rounded-full"></span>
-                    Technologies
+                    <span className="inline-block w-1.5 sm:w-2 h-6 sm:h-8 bg-gradient-to-b from-blue-600 to-purple-600 mr-2 sm:mr-3 rounded-full"></span>
+                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                      Technologies
+                    </span>
                   </h2>
                   <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {project.tech.map((tech) => (
                       <Badge
                         key={tech}
                         variant="outline"
-                        className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 hover:bg-primary/10 transition-colors duration-200"
+                        className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm bg-background/50 hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-200"
                       >
                         {tech}
                       </Badge>
@@ -391,7 +402,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-xs sm:text-sm cursor-not-allowed opacity-70 w-full sm:w-auto"
+                    className="text-xs sm:text-sm cursor-not-allowed opacity-70 w-full sm:w-auto border-2"
                     disabled
                   >
                     <ExternalLink className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
@@ -400,7 +411,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 ) : project.live ? (
                   <Button
                     size="sm"
-                    className="text-xs sm:text-sm group transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                    className="text-xs sm:text-sm group transition-all duration-300 hover:scale-105 w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                     asChild
                   >
                     <a
@@ -416,7 +427,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   <div className="flex items-center w-full sm:w-auto">
                     <Badge
                       variant="outline"
-                      className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm md:text-md border-primary/30 bg-primary/5 w-full sm:w-auto text-center"
+                      className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm md:text-md border-2 border-purple-500/30 bg-purple-500/10 hover:border-purple-500/50 w-full sm:w-auto text-center transition-colors"
                     >
                       Coming Soon: {project.comingSoon}
                     </Badge>
@@ -426,7 +437,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-xs sm:text-sm group transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                    className="text-xs sm:text-sm group transition-all duration-300 hover:scale-105 w-full sm:w-auto border-2 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400"
                     asChild
                   >
                     <a
@@ -443,7 +454,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="text-xs sm:text-sm group transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                    className="text-xs sm:text-sm group transition-all duration-300 hover:scale-105 w-full sm:w-auto border-2 hover:border-purple-500 dark:hover:border-purple-400 hover:text-purple-600 dark:hover:text-purple-400"
                     asChild
                   >
                     <a

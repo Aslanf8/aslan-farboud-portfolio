@@ -120,14 +120,16 @@ export default function Home() {
       />
 
       <div className="flex min-h-screen flex-col">
-        <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm">
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 transition-all duration-300">
           <MainNav />
         </header>
         <main className="flex-1">
           <HeroSection />
-          <ProjectsSection />
-          <SkillsSection />
-          <ContactSection />
+          <div className="relative">
+            <ProjectsSection />
+            <SkillsSection />
+            <ContactSection />
+          </div>
         </main>
         <Footer />
       </div>

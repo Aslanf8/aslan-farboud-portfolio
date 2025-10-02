@@ -277,6 +277,37 @@ export function MainNav() {
                       <span className="font-medium">Blog</span>
                     </Link>
                   </div>
+
+                  {/* Budget Calculator Section */}
+                  <div className="mt-6 pt-6 border-t border-border/30">
+                    <Link
+                      href="/budget"
+                      className="flex items-center text-lg font-medium transition-colors hover:text-primary p-2 rounded-lg hover:bg-primary/5"
+                      onClick={handleLinkClick}
+                    >
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10 mr-4 shadow-sm">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-green-600"
+                        >
+                          <line x1="12" y1="1" x2="12" y2="23" />
+                          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg>
+                      </div>
+                      🔥 FIRE Calculator
+                    </Link>
+                    <p className="text-sm text-muted-foreground ml-14 mt-2">
+                      40% savings rate + luxury lifestyle = early retirement
+                    </p>
+                  </div>
                 </nav>
               </div>
 

@@ -4,7 +4,13 @@ import { Metadata } from "next";
 import { Card, CardContent } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ArrowRight,
+  Clock,
+  ChevronLeft,
+  ChevronRight,
+  BookOpen,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Script from "next/script";
 import { unstable_cache } from "next/cache";
@@ -142,13 +148,21 @@ export default async function BlogPage({ searchParams }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
 
-        <div className="container max-w-5xl mx-auto px-4 py-8 sm:py-12 md:py-16">
+        <div className="relative container max-w-5xl mx-auto px-4 py-8 sm:py-12 md:py-16">
+          {/* Decorative background elements */}
+          <div className="absolute top-20 right-10 w-72 h-72 bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl -z-10" />
+          <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-3xl -z-10" />
+
           <header className="mb-8 sm:mb-12 md:mb-16 text-center">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-4">
-              Blog
-            </h1>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <BookOpen className="h-8 w-8 sm:h-10 sm:w-10 text-blue-600 dark:text-blue-400" />
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Blog
+              </h1>
+            </div>
             <p className="text-sm sm:text-base md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Articles and thoughts on web development, technology, and more.
+              Articles and thoughts on web development, AI, and modern
+              technology.
             </p>
           </header>
 
@@ -159,10 +173,10 @@ export default async function BlogPage({ searchParams }) {
                   <>
                     {/* Featured Post (most recent) */}
                     <section className="mb-8 sm:mb-12 md:mb-16">
-                      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+                      <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                         Latest Article
                       </h2>
-                      <div className="featured-post group rounded-lg sm:rounded-xl overflow-hidden border border-border bg-card hover:bg-accent/10 transition-all duration-300 shadow-sm hover:shadow-md">
+                      <div className="featured-post group rounded-lg sm:rounded-xl overflow-hidden border-2 border-border hover:border-blue-500 dark:hover:border-blue-400 bg-card hover:bg-accent/10 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 dark:hover:shadow-blue-400/10">
                         <Link
                           href={`/blog/${currentPosts[0].slug}`}
                           className="block"
@@ -237,11 +251,11 @@ export default async function BlogPage({ searchParams }) {
                     {currentPosts.length > 1 && (
                       <section className="mb-8 sm:mb-12">
                         <div className="flex items-center justify-between mb-4 sm:mb-6">
-                          <h2 className="text-xl sm:text-2xl font-bold">
+                          <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                             More Articles
                           </h2>
                         </div>
-                        <Separator className="mb-6 sm:mb-10" />
+                        <Separator className="mb-6 sm:mb-10 bg-gradient-to-r from-transparent via-border to-transparent" />
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-x-6 md:gap-y-10">
                           {currentPosts.slice(1).map((post) => {
                             const readingTime = readingTimes[post.id] || 1;
@@ -324,7 +338,7 @@ export default async function BlogPage({ searchParams }) {
                                   itemProp="url"
                                   prefetch={true}
                                 >
-                                  <Card className="h-full overflow-hidden border bg-card hover:bg-accent/30 transition-colors duration-300 hover:border-accent hover:shadow-md">
+                                  <Card className="h-full overflow-hidden border-2 bg-card hover:bg-accent/30 transition-all duration-300 hover:border-purple-500 dark:hover:border-purple-400 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-400/10 hover:-translate-y-1">
                                     {post.featured_image && (
                                       <div className="relative overflow-hidden">
                                         <AspectRatio ratio={16 / 9}>
@@ -395,7 +409,7 @@ export default async function BlogPage({ searchParams }) {
 
                 {currentPage !== 1 && (
                   <section>
-                    <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-10">
+                    <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-10 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                       Page {currentPage}
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-x-6 md:gap-y-10">
@@ -474,7 +488,7 @@ export default async function BlogPage({ searchParams }) {
                               itemProp="url"
                               prefetch={true}
                             >
-                              <Card className="h-full overflow-hidden border bg-card hover:bg-accent/30 transition-colors duration-300 hover:border-accent hover:shadow-md">
+                              <Card className="h-full overflow-hidden border-2 bg-card hover:bg-accent/30 transition-all duration-300 hover:border-purple-500 dark:hover:border-purple-400 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-400/10 hover:-translate-y-1">
                                 {post.featured_image && (
                                   <div className="relative overflow-hidden">
                                     <AspectRatio ratio={16 / 9}>
@@ -557,7 +571,7 @@ export default async function BlogPage({ searchParams }) {
           {/* Pagination */}
           {totalPages > 1 && (
             <nav
-              className="flex items-center justify-center space-x-1 sm:space-x-2"
+              className="flex items-center justify-center space-x-1 sm:space-x-2 pt-8"
               aria-label="Blog pagination"
               role="navigation"
             >
@@ -571,7 +585,7 @@ export default async function BlogPage({ searchParams }) {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="h-8 w-8 sm:h-9 sm:w-9 p-0"
+                    className="h-8 w-8 sm:h-9 sm:w-9 p-0 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400"
                   >
                     <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4" />
                   </Button>
@@ -598,7 +612,11 @@ export default async function BlogPage({ searchParams }) {
                   <Button
                     variant={currentPage === i + 1 ? "default" : "outline"}
                     size="sm"
-                    className="h-8 w-8 sm:h-9 sm:w-9 p-0 text-xs sm:text-sm"
+                    className={`h-8 w-8 sm:h-9 sm:w-9 p-0 text-xs sm:text-sm ${
+                      currentPage === i + 1
+                        ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                        : "hover:border-purple-500 dark:hover:border-purple-400 hover:text-purple-600 dark:hover:text-purple-400"
+                    }`}
                   >
                     {i + 1}
                   </Button>
@@ -615,7 +633,7 @@ export default async function BlogPage({ searchParams }) {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="h-8 w-8 sm:h-9 sm:w-9 p-0"
+                    className="h-8 w-8 sm:h-9 sm:w-9 p-0 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400"
                   >
                     <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
                   </Button>
