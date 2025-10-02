@@ -12,9 +12,23 @@ import {
 import { Mail, Linkedin, ExternalLink, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "./scroll-reveal";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export function ContactSection() {
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024 || "ontouchstart" in window);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   const contactMethods = [
     {
       icon: Mail,
@@ -48,10 +62,12 @@ export function ContactSection() {
 
   return (
     <section className="py-10 sm:py-12 md:py-16 lg:py-24 relative">
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-400/10 via-purple-400/10 to-pink-400/10 dark:from-blue-600/10 dark:via-purple-600/10 dark:to-pink-600/10 rounded-full blur-3xl" />
-      </div>
+      {/* Background decoration - only on desktop */}
+      {!isMobile && (
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-400/10 via-purple-400/10 to-pink-400/10 dark:from-blue-600/10 dark:via-purple-600/10 dark:to-pink-600/10 rounded-full blur-3xl" />
+        </div>
+      )}
 
       <div className="container px-4 md:px-6 mx-auto flex flex-col items-center">
         <ScrollReveal>
@@ -88,7 +104,9 @@ export function ContactSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
-                        whileHover={{ y: -4 }}
+                        whileHover={
+                          !isMobile && !shouldReduceMotion ? { y: -4 } : {}
+                        }
                         className="group"
                       >
                         {method.href ? (

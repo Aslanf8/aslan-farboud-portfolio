@@ -13,8 +13,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ScrollReveal } from "./scroll-reveal";
+import { useState, useEffect } from "react";
 const projects = [
   {
     id: "tfi-group",
@@ -106,13 +107,29 @@ const projects = [
 ];
 
 export function ProjectsSection() {
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024 || "ontouchstart" in window);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <section className="py-10 sm:py-12 md:py-16 lg:py-24 relative">
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-3xl" />
-      </div>
+      {/* Background decoration - only on desktop */}
+      {!isMobile && (
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-3xl" />
+        </div>
+      )}
 
       <div className="container px-4 md:px-6 mx-auto flex flex-col items-center">
         <ScrollReveal>
@@ -152,7 +169,9 @@ export function ProjectsSection() {
               .map((project, index) => (
                 <ScrollReveal key={project.id} delay={0.2 + index * 0.1}>
                   <motion.div
-                    whileHover={{ y: -8 }}
+                    whileHover={
+                      !isMobile && !shouldReduceMotion ? { y: -8 } : {}
+                    }
                     transition={{ duration: 0.3 }}
                     className="h-full"
                   >
@@ -278,7 +297,9 @@ export function ProjectsSection() {
               .map((project, index) => (
                 <ScrollReveal key={project.id} delay={0.3 + index * 0.1}>
                   <motion.div
-                    whileHover={{ y: -8 }}
+                    whileHover={
+                      !isMobile && !shouldReduceMotion ? { y: -8 } : {}
+                    }
                     transition={{ duration: 0.3 }}
                     className="h-full"
                   >

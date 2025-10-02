@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollReveal } from "./scroll-reveal";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const skillCategories = [
   {
@@ -101,13 +102,29 @@ const skillCategories = [
 ];
 
 export function SkillsSection() {
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024 || "ontouchstart" in window);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <section className="py-10 sm:py-12 md:py-16 lg:py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-3xl" />
-      </div>
+      {/* Background decoration - lighter on mobile */}
+      {!isMobile && (
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400/10 dark:bg-blue-600/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-400/10 dark:bg-purple-600/10 rounded-full blur-3xl" />
+        </div>
+      )}
 
       <div className="container px-4 md:px-6 mx-auto flex flex-col items-center">
         <ScrollReveal>
@@ -127,12 +144,16 @@ export function SkillsSection() {
           <div className="mt-8 sm:mt-12 md:mt-16 w-full max-w-[1200px]">
             <Tabs defaultValue="frontend" className="w-full">
               <div className="flex justify-center mb-6 sm:mb-8">
-                <TabsList className="flex flex-wrap justify-center w-full max-w-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 p-1">
+                <TabsList
+                  className={`flex flex-wrap justify-center w-full max-w-2xl bg-white/50 dark:bg-gray-800/50 ${
+                    !isMobile ? "backdrop-blur-sm" : ""
+                  } border border-gray-200 dark:border-gray-700 p-1`}
+                >
                   {skillCategories.map((category) => (
                     <TabsTrigger
                       key={category.id}
                       value={category.id}
-                      className="text-xs sm:text-sm flex-1 min-w-[120px] data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white"
+                      className="text-xs sm:text-sm flex-1 min-w-[120px] data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-purple-600 data-[state=active]:text-white transition-colors"
                     >
                       {category.name}
                     </TabsTrigger>
@@ -154,21 +175,38 @@ export function SkillsSection() {
                     </CardHeader>
                     <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
                       <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                        {category.skills.map((skill, index) => (
-                          <motion.div
-                            key={skill}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.3, delay: index * 0.03 }}
-                          >
+                        {category.skills.map((skill, index) => {
+                          // Only animate on desktop when motion is not reduced
+                          const shouldAnimate =
+                            !isMobile && !shouldReduceMotion;
+
+                          return shouldAnimate ? (
+                            <motion.div
+                              key={skill}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{
+                                duration: 0.2,
+                                delay: index * 0.02,
+                              }}
+                            >
+                              <Badge
+                                variant="secondary"
+                                className="text-xs sm:text-sm py-1.5 px-3 hover:bg-blue-100 dark:hover:bg-blue-900 lg:hover:scale-105 transition-colors lg:transition-all cursor-default"
+                              >
+                                {skill}
+                              </Badge>
+                            </motion.div>
+                          ) : (
                             <Badge
+                              key={skill}
                               variant="secondary"
-                              className="text-xs sm:text-sm py-1.5 px-3 hover:bg-blue-100 dark:hover:bg-blue-900 hover:scale-105 transition-all cursor-default"
+                              className="text-xs sm:text-sm py-1.5 px-3 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors cursor-default"
                             >
                               {skill}
                             </Badge>
-                          </motion.div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </CardContent>
                   </Card>
